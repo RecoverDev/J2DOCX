@@ -1,0 +1,23 @@
+package com.github.RecoverDev.j2docx.serialization.xml;
+
+final class ContentTypeSerializer {
+
+    public static void serialize(XmlStreamWriter writer) {
+
+        writer.startDocument()
+            .startElement("Types")
+            .namespace("", Namespaces.CONTENT_TYPE)
+            .emptyElement("Default")
+            .attribute("Extension", "rels")
+            .attribute("ContentType", "application/vnd.openxmlformats-package.relationships+xml")
+            .emptyElement("Default")
+            .attribute("Extension", "xml")
+            .attribute("ContentType", "application/xml")
+            .emptyElement("Override")
+            .attribute("PartName", "/word/document.xml")
+            .attribute("ContentType", "application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml")
+            .endElement()
+            .endDocument();
+    }
+
+}
