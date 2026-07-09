@@ -1,16 +1,7 @@
 # J2DOCX
 
-[ 1. Description ] [1]
-[ 2. Why J2DOCX? ] [2]
-[ 3. Key Features ] [3]
-[ 4. Example of Use ] [4]
-[ 5. Library Architecture ] [5]
-[ 6. Roadmap ] [6]
-[ 7. How to Build the Project ] [7]
-[ 8. How to Contribute ] (CONTRIBUTION.md)
-[ 9. License ] [9]
+[ How to Contribute ](CONTRIBUTION.md)
 
-[1]:
 ## Description
 
 **J2DOCX** is a lightweight library for generating DOCX documents using the Fluent API.
@@ -20,7 +11,6 @@ The library focuses on simplicity, readability, and a predictable architecture, 
 J2DOCX provides a clear and elegant object-oriented API that allows you to create documents without working directly
 with XML and OpenXML.
 
-[2]:
 ## Why J2DOCX
 
 * Fluent API support
@@ -30,7 +20,6 @@ with XML and OpenXML.
 * Easy to extend
 * Minimal dependencies
 
-[3]:
 ## Key Features
 
 Currently, you can create a simple document containing paragraphs and tables.
@@ -39,7 +28,6 @@ You can define a unique appearance for each document element.
 
 The library allows you to set the font, text size, indentation, style (bold, italic, etc.), text color, background, define table styles, and much more.
 
-[4]:
 ## Usage Example
 
 Below is an example of generating a document
@@ -85,24 +73,22 @@ containing a heading, a table, and a closing paragraph.
 
 ```
 
-[5]
 ## Library architecture
 
-DocumentX
-│
-├──Paragraph
-│  ├── ParagraphProperties
-│  └──Run
-│     └── RunProperties
-│
-└── Table 
-    ├──TableProperties 
-    └──Row 
-       ├── RowProperties 
-       └── Cell 
+DocumentX\
+│\
+├──Paragraph\
+│  ├── ParagraphProperties\
+│  └──Run\
+│     └── RunProperties\
+│\
+└── Table \
+    ├──TableProperties\
+    └──Row\
+       ├── RowProperties\
+       └── Cell\
            └── CellProperties
-
-[6]
+           
 
 ## Roadmap
 
@@ -128,7 +114,6 @@ DocumentX
 
 □ Sections
 
-[7]
 ## How to build the project
 
 ```bash
@@ -136,7 +121,6 @@ git clone https://github.com/RecoverDev/J2DOCX.git
 gradlew build
 ```
 
-[9]
 ## License
 
 This project is distributed under the MIT License.
