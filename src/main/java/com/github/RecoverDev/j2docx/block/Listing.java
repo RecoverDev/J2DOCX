@@ -34,7 +34,7 @@ public class Listing implements DocumentElement, Block {
      * Создает пустой список
      * @return пустой список
      */
-    public Listing create() {
+    public static Listing create() {
         return new Listing();
     }
 
