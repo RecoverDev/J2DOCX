@@ -7,22 +7,27 @@ import com.github.RecoverDev.j2docx.properties.ListingProperties;
 
 final class NumberingLevel {
 
-    private Integer level;
+    private final Integer level;
     private final NumberingStyle numberingStyle;
     private final String pattern;
     private final Character bullet;
     private final Integer start;
+    private final Integer left;
+    private final Integer hanging;
 
-    private NumberingLevel(ListingProperties properties) {
+    private NumberingLevel(Integer numLevel, ListingProperties properties) {
+        this.level = numLevel;
         this.numberingStyle = properties.hasNumberingStyle() ? properties.getNumberingStyle() : NumberingStyle.DECIMAL;
         this.bullet = properties.getBullet();
-        this.pattern = properties.hasPattern() ? properties.getPattern() : "%1.";
+        this.pattern = properties.hasPattern() ? properties.getPattern() : "%" + String.valueOf(this.level + 1) + ".";
         this.start = properties.hasStart() ? properties.getStart() : 1;
+        this.left = properties.hasLeft() ? properties.getLeft() : 720 * (this.level + 1);
+        this.hanging = properties.hasHanging() ? properties.getHanging() : 360;
     }
 
-    public static  NumberingLevel of(ListingProperties properties) {
+    public static  NumberingLevel of(Integer numLevel, ListingProperties properties) {
 
-        return new NumberingLevel(properties);
+        return new NumberingLevel(numLevel, properties);
 
     }
 
@@ -31,10 +36,6 @@ final class NumberingLevel {
         return level;
     }
     
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
-
     public boolean hasLevel() {
         return this.level != null;
     }
@@ -70,6 +71,22 @@ final class NumberingLevel {
 
     public boolean hasStart() {
         return this.start != null;
+    }
+
+    public Integer getLeft() {
+        return this.left;
+    }
+
+    public boolean hasLeft() {
+        return this.left != null;
+    }
+
+    public Integer getHanging() {
+        return this.hanging;
+    }
+
+    public boolean hasHanging() {
+        return this.hanging != null;
     }
 
     @Override

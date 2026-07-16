@@ -1,5 +1,7 @@
 # J2DOCX
 
+[ Русский, RU ](README_ru.md)
+
 [ How to Contribute ](CONTRIBUTION.md)
 
 ## Description
@@ -75,44 +77,52 @@ containing a heading, a table, and a closing paragraph.
 
 ## Library architecture
 
-DocumentX\
-│\
-├──Paragraph\
-│  ├── ParagraphProperties\
-│  └──Run\
-│     └── RunProperties\
-│\
-└── Table \
-    ├──TableProperties\
-    └──Row\
-       ├── RowProperties\
-       └── Cell\
-           └── CellProperties
-           
+```mermaid
+graph TD
+
+    DocumentX
+
+    DocumentX --> Paragraph
+    Paragraph --> ParagraphProperties
+    Paragraph --> Run
+    Run --> RunProperties
+
+    ParagraphProperties --> Alignment
+    ParagraphProperties --> Indentation
+    ParagraphProperties --> Spacing
+    ParagraphProperties --> Numbering
+
+    DocumentX --> Table
+    Table --> TableProperties
+    Table --> Row
+    Row --> RowProperties
+    Row --> Cell
+    Cell --> CellProperties
+```
 
 ## Roadmap
 
 ### Version 0.1
 
-✔Paragraphs
+- [x] Paragraphs
 
-✔Runs
+- [x] Runs
 
-✔Tables
+- [x] Tables
 
-✔ Cells
+- [x] Cells
 
 ### Version 0.2
 
-□ Styles
+- [ ] Styles
 
-□ Lists
+- [x] Lists
 
-□ Headers
+- [ ] Headers
 
-□ Footers
+- [ ] Footers
 
-□ Sections
+- [ ] Sections
 
 ## How to build the project
 

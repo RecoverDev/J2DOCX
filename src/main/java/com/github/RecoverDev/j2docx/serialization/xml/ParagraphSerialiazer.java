@@ -23,4 +23,19 @@ final class ParagraphSerialiazer {
         writer.endElement();
     }
 
+    public static void serialize(Paragraph paragraph, SerializerContext context, XmlStreamWriter writer) {
+        writer.startElement("w:p");
+
+
+        SerializerDispatcher.dispatche(paragraph.getProperties(), context, writer);
+
+        List<Inline> inlines = paragraph.getInlines();
+        for (Inline inline : inlines) {
+            SerializerDispatcher.dispatche((DocumentElement)inline, writer);
+        }
+
+        writer.endElement();
+    }
+
+
 }

@@ -38,6 +38,10 @@ public class ListingProperties implements DocumentElement {
 
     private Integer start;
 
+    private Integer left;
+
+    private Integer hanging;
+
     /**
      * Создает пустой набор свойств списка.
      */
@@ -189,10 +193,64 @@ public class ListingProperties implements DocumentElement {
     }
 
 
+    // Left
+    /**
+     * Устанавливает отступ списка от левого края документа нумерации списка в twips.
+     * <p>
+     * Например, значение {@code 720} означает, что список отступает от левого края документа на 12,7 мм
+     * </p>
+     *
+     * @param value отступ в twips.
+     * @return текущий объект свойств.
+     */
+    public ListingProperties left(int value) {
+        this.left = value;
+        return this;
+    }
+
+    public boolean hasLeft() {
+        return this.left != null;
+    }
+
+    public Integer getLeft() {
+        return this.left;
+    }
+
+    public ListingProperties clearLeft() {
+        this.left = null;
+        return this;
+    }
 
 
+    // Hanging
+    /**
+     * Устанавливает отступ между маркером списка и текстом в twips.
+     * <p>
+     * Например, значение {@code 360} означает, что текст отступает от маркера на 6,35 мм
+     * </p>
+     * <p>
+     * по умолчанию Word  устанавливает значение {@code 360}
+     * </p>
+     *
+     * @param value отступ в twips.
+     * @return текущий объект свойств.
+     */
+    public ListingProperties hanging(int value) {
+        this.hanging = value;
+        return this;
+    }
 
+    public boolean hasHanging() {
+        return this.hanging != null;
+    }
 
+    public Integer getHanging() {
+        return this.hanging;
+    }
 
+    public ListingProperties clearHanging() {
+        this.hanging = null;
+        return this;
+    }
 
 }

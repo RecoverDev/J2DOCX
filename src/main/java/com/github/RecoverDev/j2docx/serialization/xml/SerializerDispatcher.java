@@ -3,6 +3,7 @@ package com.github.RecoverDev.j2docx.serialization.xml;
 import com.github.RecoverDev.j2docx.DocumentElement;
 import com.github.RecoverDev.j2docx.DocumentX;
 import com.github.RecoverDev.j2docx.block.Cell;
+import com.github.RecoverDev.j2docx.block.Listing;
 import com.github.RecoverDev.j2docx.block.Paragraph;
 import com.github.RecoverDev.j2docx.block.Row;
 import com.github.RecoverDev.j2docx.block.Table;
@@ -29,7 +30,19 @@ final class SerializerDispatcher {
                 case RowProperties rwProperties -> RowPropertiesSerializer.serialize(rwProperties, xmlWriter);
                 case Cell cell -> CellSerializer.serialize(cell, xmlWriter);
                 case CellProperties cProperties -> CellPropertiesSerializer.serialize(cProperties, xmlWriter);
+                case Listing listing -> ListingSerializer.serialize(listing, xmlWriter);
 
+            default -> {
+                throw new SerializerException(new Throwable("Сериализатор объекта " + element.toString() + " не определен"));
+            }
+            }
+        }
+
+        public static void dispatche(DocumentElement element, SerializerContext context, XmlStreamWriter xmlWriter) {
+
+            switch (element) {
+                case Paragraph paragraph -> ParagraphSerialiazer.serialize(paragraph, context, xmlWriter);
+                case ParagraphProperties pProperties -> ParagraphPropertiesSerializer.serialize(pProperties, context, xmlWriter);
             default -> {
                 throw new SerializerException(new Throwable("Сериализатор объекта " + element.toString() + " не определен"));
             }

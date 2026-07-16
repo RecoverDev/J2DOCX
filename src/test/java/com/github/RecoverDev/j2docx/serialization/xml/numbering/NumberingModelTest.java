@@ -71,7 +71,8 @@ public class NumberingModelTest {
                                             .item("Последний элемент завершающего списка")
                                                             );
 
-        NumberingModel model = NumberingModel.of(document);
+        NumberingModel.create(document);                                                            
+        NumberingModel model = NumberingModel.getInstance();
 
         assertEquals(2, model.getAbstractNumbering().size());
         assertEquals(3, model.getNumberingInstances().size());

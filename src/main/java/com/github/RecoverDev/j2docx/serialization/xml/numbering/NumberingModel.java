@@ -2,6 +2,7 @@ package com.github.RecoverDev.j2docx.serialization.xml.numbering;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -9,11 +10,14 @@ import java.util.stream.Collectors;
 import com.github.RecoverDev.j2docx.DocumentX;
 import com.github.RecoverDev.j2docx.block.Listing;
 
-class NumberingModel {
+public final class NumberingModel {
+    private static NumberingModel instanceModel = new NumberingModel();
 
     private final Map<List<NumberingLevel>, AbstractNumbering> abstractNumbering = new HashMap<>();
     private final List<NumberingInstance> numberingInstances = new ArrayList<>();
-    private final Map<NumberingInstance, Listing> listings = new HashMap<>();
+    private final Map<Listing, NumberingInstance> listings = new IdentityHashMap<>();
+
+    private NumberingModel() {}
 
     private NumberingModel(DocumentX document) {
         List<Listing> listings = document.getBlocks()
@@ -28,8 +32,12 @@ class NumberingModel {
         }
     }
 
-    public static NumberingModel of(DocumentX document) {
-        return new NumberingModel(document);
+    public static void create(DocumentX document) {
+        instanceModel = new NumberingModel(document);
+    }
+
+    public static NumberingModel getInstance() {
+        return instanceModel;
     }
 
 
@@ -41,7 +49,7 @@ class NumberingModel {
 
         AbstractNumbering result =
             abstractNumbering.computeIfAbsent(key, k -> {
-                abstractNumber.setId(abstractNumbering.size());
+                abstractNumber.setId(abstractNumbering.size() + 1);
                 return abstractNumber;
             });        
 
@@ -49,9 +57,9 @@ class NumberingModel {
     }
 
     private void addNumberingInstatce(AbstractNumbering abstractNumbering, Listing listing) {
-        NumberingInstance instance = new NumberingInstance(this.numberingInstances.size(), abstractNumbering.getId()); 
+        NumberingInstance instance = new NumberingInstance(this.numberingInstances.size() + 1, abstractNumbering.getId()); 
         this.numberingInstances.add(instance);
-        this.listings.put(instance, listing);
+        this.listings.put(listing, instance);
     }
 
     public Map<List<NumberingLevel>, AbstractNumbering> getAbstractNumbering() {
@@ -60,6 +68,10 @@ class NumberingModel {
 
     public List<NumberingInstance> getNumberingInstances() {
         return numberingInstances;
+    }
+
+    public Map<Listing, NumberingInstance> getListings() {
+        return listings;
     }
 
 

@@ -7,6 +7,25 @@ final class ParagraphPropertiesSerializer {
     public static void serialize(ParagraphProperties properties, XmlStreamWriter writer) {
         writer.startElement("w:pPr");
 
+        serializeProperties(properties, writer);
+
+        writer.endElement();
+    }
+
+    public static void serialize(ParagraphProperties properties, SerializerContext context, XmlStreamWriter writer) {
+        writer.startElement("w:pPr");
+
+        for (Serializer serializer : context.getSerialize()) {
+            serializer.serialize(writer);
+        }
+
+        serializeProperties(properties, writer);
+
+        writer.endElement();
+    }
+
+
+    private static void serializeProperties(ParagraphProperties properties, XmlStreamWriter writer) {
         if (properties.hasAlignment()) {
             writer.emptyElement("w:jc")
                 .attribute("w:val", properties.getAlignment().getXmlValue());
@@ -70,7 +89,6 @@ final class ParagraphPropertiesSerializer {
             }
         }
 
-        writer.endElement();
     }
 
 }

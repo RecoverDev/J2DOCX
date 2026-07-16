@@ -5,10 +5,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.github.RecoverDev.j2docx.DocumentX;
 import com.github.RecoverDev.j2docx.serialization.packages.DocxPackageWriter;
 import com.github.RecoverDev.j2docx.serialization.packages.PackagePack;
+import com.github.RecoverDev.j2docx.serialization.xml.numbering.NumberingModel;
+import com.github.RecoverDev.j2docx.serialization.xml.numbering.NumberingSerializer;
 
 /**
  * Выполняет сериализацию документа J2DOCX в файл формата DOCX.
@@ -46,14 +50,23 @@ public class DocxWriter {
      */    
     public static void write(DocumentX document, String fileName) {
 
+        Set<DocumentParts> documentParts = new HashSet<>();
+
         Collection<PackagePack> parts = new ArrayList<>();
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+        NumberingModel.create(document);
+        NumberingModel numberingModel = NumberingModel.getInstance();
+        if (numberingModel.getAbstractNumbering().size() > 0) {
+            parts.add(numberingFile(numberingModel));
+            documentParts.add(DocumentParts.NUMBERING);
+        }
         
-        parts.add(contentTypePack());
+        parts.add(contentTypePack(documentParts));
         parts.add(documentPack(document));
-        parts.add(wordRelsFile());
-        parts.add(relsFile());
+        parts.add(wordRelsFile(documentParts));
+        parts.add(relsFile(documentParts));
 
 
         DocxPackageWriter packageWriter = new DocxPackageWriter();
@@ -79,37 +92,48 @@ public class DocxWriter {
 
     }
 
-    private static PackagePack contentTypePack() {
+    private static PackagePack contentTypePack(Set<DocumentParts> documentParts) {
 
         ByteArrayOutputStream contentStream = new ByteArrayOutputStream();
 
         XmlStreamWriter writer = new XmlStreamWriterImpl(contentStream);
 
-        ContentTypeSerializer.serialize(writer);
+        ContentTypeSerializer.serialize(documentParts, writer);
 
         return new PackagePack("[Content_Types].xml", contentStream.toByteArray());
     }
 
-    private static PackagePack relsFile() {
+    private static PackagePack relsFile(Set<DocumentParts> documentParts) {
 
         ByteArrayOutputStream relsStream = new ByteArrayOutputStream();
 
         XmlStreamWriter writer = new XmlStreamWriterImpl(relsStream);
 
-        RelsFileSerializer.serialize(writer);
+        RelsFileSerializer.serialize(documentParts, writer);
 
         return new PackagePack("_rels/.rels", relsStream.toByteArray());
     }
 
-    private static PackagePack wordRelsFile() {
+    private static PackagePack wordRelsFile(Set<DocumentParts> documentParts) {
 
         ByteArrayOutputStream relsStream = new ByteArrayOutputStream();
 
         XmlStreamWriter writer = new XmlStreamWriterImpl(relsStream);
 
-        WordRelsSerializer.serialize(writer);
+        WordRelsSerializer.serialize(documentParts, writer);
 
         return new PackagePack("word/_rels/document.xml.rels", relsStream.toByteArray());
+    }
+
+    private static PackagePack numberingFile(NumberingModel model) {
+
+        ByteArrayOutputStream numberingStream = new ByteArrayOutputStream();
+
+        XmlStreamWriter writer = new XmlStreamWriterImpl(numberingStream);
+
+        NumberingSerializer.serialize(model, writer);
+
+        return new PackagePack("word/numbering.xml", numberingStream.toByteArray());
     }
 
     private static void writeToFile(String name, ByteArrayOutputStream out) {
@@ -119,6 +143,6 @@ public class DocxWriter {
         } catch (Exception e) {
             throw new FileWriteException(e);
         }
-    } 
+    }
 
 }

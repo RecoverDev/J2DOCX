@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.github.RecoverDev.j2docx.serialization.packages.DocxPackageWriterTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-07-08T13:11:03.023Z" hostname="WS-MSK-ANALIT69" time="0.006">
+<testsuite name="com.github.RecoverDev.j2docx.serialization.packages.DocxPackageWriterTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-07-16T13:23:57.894Z" hostname="WS-MSK-ANALIT69" time="0.005">
   <properties/>
-  <testcase name="Создаем ZIP архив" classname="com.github.RecoverDev.j2docx.serialization.packages.DocxPackageWriterTest" time="0.005"/>
+  <testcase name="Создаем ZIP архив" classname="com.github.RecoverDev.j2docx.serialization.packages.DocxPackageWriterTest" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -17,8 +17,7 @@ class AbstractNumbering {
     }
 
     public static void getNumberingLevel(AbstractNumbering numbering, Listing listing) {
-        NumberingLevel level = NumberingLevel.of(listing.getProperties());
-        level.setLevel(numbering.getLevels().size());
+        NumberingLevel level = NumberingLevel.of(numbering.getLevels().size(), listing.getProperties());
         numbering.getLevels().add(level);
         listing.getItems().stream().filter(l -> l instanceof Listing).forEach(l -> getNumberingLevel(numbering, (Listing)l));
     }

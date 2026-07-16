@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.github.RecoverDev.j2docx.serialization.xml.numbering.NumberingModelTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-07-16T13:23:57.927Z" hostname="WS-MSK-ANALIT69" time="0.01">
+  <properties/>
+  <testcase name="Создание numberingModel из DocumentX" classname="com.github.RecoverDev.j2docx.serialization.xml.numbering.NumberingModelTest" time="0.009"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

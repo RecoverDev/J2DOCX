@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.github.RecoverDev.j2docx.serialization.xml.DocumentSerialiazerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-07-08T13:11:03.030Z" hostname="WS-MSK-ANALIT69" time="0.004">
+<testsuite name="com.github.RecoverDev.j2docx.serialization.xml.DocumentSerialiazerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-07-16T13:23:57.900Z" hostname="WS-MSK-ANALIT69" time="0.005">
   <properties/>
-  <testcase name="Сериализация пустого DocumentX в XML" classname="com.github.RecoverDev.j2docx.serialization.xml.DocumentSerialiazerTest" time="0.002"/>
+  <testcase name="Сериализация пустого DocumentX в XML" classname="com.github.RecoverDev.j2docx.serialization.xml.DocumentSerialiazerTest" time="0.001"/>
   <testcase name="Сериализация документа с параграфом в XML" classname="com.github.RecoverDev.j2docx.serialization.xml.DocumentSerialiazerTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
