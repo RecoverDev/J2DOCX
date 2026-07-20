@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 import com.github.RecoverDev.j2docx.DocumentElement;
 import com.github.RecoverDev.j2docx.Stylable;
 import com.github.RecoverDev.j2docx.properties.TableProperties;
+import com.github.RecoverDev.j2docx.styles.TableStyle;
 
 /**
  * Представляет таблицу в модели документа J2DOCX.
@@ -22,13 +23,13 @@ import com.github.RecoverDev.j2docx.properties.TableProperties;
  *   <li>настройка форматирования — {@code properties(...)}.</li>
  * </ul>
  */
-public final class Table implements Block, Stylable, DocumentElement {
+public final class Table implements Block, Stylable<Table, TableStyle>, DocumentElement {
 
     private final List<Row> rows = new ArrayList<>();
 
     private TableProperties properties = new TableProperties();
 
-    private String styleId;
+    private TableStyle style;
 
     private Table() {}
 
@@ -81,21 +82,23 @@ public final class Table implements Block, Stylable, DocumentElement {
     }
 
     /**
-     * Возвращает Id установленного стиля
-     * @return Id установленного стиля
+     * Возвращает установленный стиль
+     * @return установленный стиль
      */
     @Override
-    public String getStyleId() {
-        return this.styleId; 
+    public TableStyle getStyle() {
+        return this.style; 
     }
 
     /**
      * Устанавливает стиль, который нужно использовать при форматировании таблицы
-     * @param styleId идентификатор стиля
+     * @param style стиль
+     * @return текущая таблица
      */
     @Override
-    public void setStyleId(String styleId) {
-        this.styleId = styleId;
+    public Table style(TableStyle style) {
+        this.style = style;
+        return this;
     }
 
     // установка свойств

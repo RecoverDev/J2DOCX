@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.github.RecoverDev.j2docx.DocumentElement;
-import com.github.RecoverDev.j2docx.Stylable;
 import com.github.RecoverDev.j2docx.properties.RowProperties;
 
 /**
@@ -21,13 +20,11 @@ import com.github.RecoverDev.j2docx.properties.RowProperties;
  *   <li>добавление ячейки — {@link #cell(Cell)};</li>
  * </ul>
  */
-public final class Row implements Stylable, DocumentElement {
+public final class Row implements DocumentElement {
 
     private final List<Cell> cells = new ArrayList<>();
 
     private RowProperties properties = new RowProperties();
-
-    private String styleId;
 
     private Row() {}
 
@@ -75,24 +72,6 @@ public final class Row implements Stylable, DocumentElement {
      */
     public List<Cell> getCells() {
         return (List<Cell>) Collections.unmodifiableList(cells);
-    }
-
-    /**
-     * Возвращает Id установленного стиля
-     * @return Id установленного стиля
-     */
-    @Override
-    public String getStyleId() {
-        return this.styleId; 
-    }
-
-    /**
-     * Устанавливает стиль, который нужно использовать при форматировании строки таблицы
-     * @param styleId идентификатор стиля
-     */
-    @Override
-    public void setStyleId(String styleId) {
-        this.styleId = styleId;
     }
 
     // установка свойств

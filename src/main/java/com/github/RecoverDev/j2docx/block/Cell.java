@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.github.RecoverDev.j2docx.DocumentElement;
-import com.github.RecoverDev.j2docx.Stylable;
 import com.github.RecoverDev.j2docx.properties.CellProperties;
 
 /**
@@ -25,13 +24,11 @@ import com.github.RecoverDev.j2docx.properties.CellProperties;
  *   <li>настройка форматирования — {@code properties(...)}.</li>
  * </ul>
  */
-public final class Cell implements Stylable, DocumentElement {
+public final class Cell implements DocumentElement {
 
     private final List<Block> blocks = new ArrayList<>();
 
     private CellProperties properties = new CellProperties();
-
-    private String styleId;
 
     private Cell() {}
 
@@ -78,24 +75,6 @@ public final class Cell implements Stylable, DocumentElement {
      */
     public List<Block> getBlocks() {
         return (List<Block>) Collections.unmodifiableList(blocks);
-    }
-
-    /**
-     * Возвращает Id установленного стиля
-     * @return Id установленного стиля
-     */
-    @Override
-    public String getStyleId() {
-        return this.styleId; 
-    }
-
-    /**
-     * Устанавливает стиль, который нужно использовать при форматировании ячейки
-     * @param styleId идентификатор стиля
-     */
-    @Override
-    public void setStyleId(String styleId) {
-        this.styleId = styleId;
     }
 
     // установка свойств

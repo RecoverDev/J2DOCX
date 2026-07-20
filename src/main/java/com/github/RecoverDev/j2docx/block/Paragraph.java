@@ -10,6 +10,7 @@ import com.github.RecoverDev.j2docx.Stylable;
 import com.github.RecoverDev.j2docx.inline.Inline;
 import com.github.RecoverDev.j2docx.inline.Run;
 import com.github.RecoverDev.j2docx.properties.ParagraphProperties;
+import com.github.RecoverDev.j2docx.styles.ParagraphStyle;
 
 /**
  * Представляет абзац в модели документа J2DOCX.
@@ -25,13 +26,13 @@ import com.github.RecoverDev.j2docx.properties.ParagraphProperties;
  *   <li>настройка форматирования — {@code properties(...)}.</li>
  * </ul>
  */
-public final class Paragraph implements DocumentElement, Block, Stylable  {
+public final class Paragraph implements DocumentElement, Block, Stylable<Paragraph, ParagraphStyle>  {
     
     private final List<Inline> inlines = new ArrayList<>();
 
     private ParagraphProperties properties = new ParagraphProperties();
 
-    private String styleId;
+    private ParagraphStyle style;
 
     private Paragraph() {}
 
@@ -93,21 +94,23 @@ public final class Paragraph implements DocumentElement, Block, Stylable  {
     }
 
     /**
-     * Возвращает Id установленного стиля
-     * @return Id установленного стиля
+     * Возвращает установленный стиль
+     * @return установленный стиль
      */
     @Override
-    public String getStyleId() {
-        return this.styleId; 
+    public ParagraphStyle getStyle() {
+        return this.style; 
     }
 
     /**
      * Устанавливает стиль, который нужно использовать при форматировании абзаца
-     * @param styleId идентификатор стиля
+     * @param style стиль
+     * @return текущий абзац
      */
     @Override
-    public void setStyleId(String styleId) {
-        this.styleId = styleId;
+    public Paragraph style(ParagraphStyle style) {
+        this.style = style;
+        return this;
     }
 
     // установка свойств

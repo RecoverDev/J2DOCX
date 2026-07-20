@@ -1,9 +1,11 @@
 package com.github.RecoverDev.j2docx;
 
-public interface Stylable {
+import com.github.RecoverDev.j2docx.styles.Style;
 
-    String getStyleId();
+public interface Stylable<SELF, STYLE extends Style<?>> {
 
-    void setStyleId(String styleId);
+    SELF style(STYLE style);
+
+    STYLE getStyle();
 
 }

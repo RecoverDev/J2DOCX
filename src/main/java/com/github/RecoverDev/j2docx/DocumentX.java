@@ -21,6 +21,8 @@ public final class DocumentX implements DocumentElement {
 
     private final List<Block> blocks = new ArrayList<>();
 
+    private final Styles styles = new Styles();
+
     private DocumentX() {}
 
     /**
@@ -31,6 +33,19 @@ public final class DocumentX implements DocumentElement {
     public static DocumentX create() {
         return new DocumentX();
     }
+
+    /**
+     * Возвращает коллекцию стилей документа.
+     *
+     * <p>Коллекция содержит все стили, зарегистрированные в документе,
+     * и используется для назначения форматирования абзацам, таблицам
+     * и фрагментам текста.</p>
+     *
+     * @return коллекция стилей документа.
+     */
+    public Styles styles() {
+        return styles;
+    }    
 
     /**
      * Добавляет блочный элемент в документ.
@@ -82,4 +97,5 @@ public final class DocumentX implements DocumentElement {
     public List<Block> getBlocks() {
         return Collections.unmodifiableList(blocks);
     }
+
 }

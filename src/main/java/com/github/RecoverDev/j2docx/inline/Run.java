@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 import com.github.RecoverDev.j2docx.DocumentElement;
 import com.github.RecoverDev.j2docx.Stylable;
 import com.github.RecoverDev.j2docx.properties.RunProperties;
+import com.github.RecoverDev.j2docx.styles.CharacterStyle;
 
 /**
  * Представляет текстовый элемент в модели документа J2DOCX
@@ -19,11 +20,11 @@ import com.github.RecoverDev.j2docx.properties.RunProperties;
  * </ul>
  * 
  */
-public final class Run implements Inline, Stylable, DocumentElement {
+public final class Run implements Inline, Stylable<Run, CharacterStyle>, DocumentElement {
 
     private String text;
 
-    private String styleId;
+    private CharacterStyle style;
 
     private RunProperties properties = new RunProperties();
 
@@ -49,21 +50,23 @@ public final class Run implements Inline, Stylable, DocumentElement {
     }
 
     /**
-     * Возвращает Id установленного стиля
-     * @return Id установленного стиля
+     * Возвращает установленный стиль
+     * @return установленный стиль
      */
     @Override
-    public String getStyleId() {
-        return this.styleId;
+    public CharacterStyle getStyle() {
+        return this.style;
     }
 
     /**
      * Устанавливает стиль, который нужно использовать при форматировании текстового элемента
-     * @param styleId идентификатор стиля
+     * @param style стиль
+     * @return текущий текстовый элемент
      */
     @Override
-    public void setStyleId(String styleId) {
-        this.styleId = styleId;
+    public Run style(CharacterStyle style) {
+        this.style = style;
+        return this;
     }
 
     
