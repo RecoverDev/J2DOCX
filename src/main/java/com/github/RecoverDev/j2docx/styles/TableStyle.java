@@ -81,6 +81,14 @@ public final class TableStyle extends Style<TableStyle> {
         return self();
     }
 
+    public boolean hasTableProperties() {
+        return this.tableProperties != null;
+    }
+
+    public TableProperties getTableProperties() {
+        return this.tableProperties;
+    }
+
     /**
      * Возвращает свойства форматирования строк таблицы.
      *
@@ -106,6 +114,14 @@ public final class TableStyle extends Style<TableStyle> {
     public TableStyle row(Consumer<RowProperties> consumer) {
         consumer.accept(this.row());
         return self();
+    }
+
+    public boolean hasRowProperties() {
+        return this.rowProperties != null;
+    }
+
+    public RowProperties getRowProperties() {
+        return this.rowProperties;
     }
 
     /**
@@ -135,6 +151,14 @@ public final class TableStyle extends Style<TableStyle> {
         return self();
     }
 
+    public boolean hasCellProperties() {
+        return this.cellProperties != null;
+    }
+
+    public CellProperties getCellProperties() {
+        return this.cellProperties;
+    }
+
     /**
      * Возвращает свойства форматирования абзацев внутри таблицы.
      *
@@ -162,6 +186,14 @@ public final class TableStyle extends Style<TableStyle> {
         return self();
     }
 
+    public boolean hasParagraphProperties() {
+        return this.paragraphProperties != null;
+    }
+
+    public ParagraphProperties getParagraphProperties() {
+        return this.paragraphProperties;
+    }
+
     /**
      * Возвращает свойства форматирования текста внутри таблицы.
      *
@@ -187,6 +219,14 @@ public final class TableStyle extends Style<TableStyle> {
     public TableStyle run(Consumer<RunProperties> consumer) {
         consumer.accept(this.run());
         return self();
+    }
+
+    public boolean hasRunProperties() {
+        return this.runProperties != null;
+    }
+
+    public RunProperties getRunProperties() {
+        return this.runProperties;
     }
 
     @Override

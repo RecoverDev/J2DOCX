@@ -28,8 +28,12 @@ public final class NumberingModel {
         
         for (Listing list : listings) {
             AbstractNumbering aNumbering = addAbstractNumbering(list);
-            addNumberingInstatce(aNumbering, list);
+            addNumberingInstance(aNumbering, list);
         }
+    }
+
+    public static void create() {
+        instanceModel = new NumberingModel();
     }
 
     public static void create(DocumentX document) {
@@ -38,6 +42,13 @@ public final class NumberingModel {
 
     public static NumberingModel getInstance() {
         return instanceModel;
+    }
+
+    public Integer addListing(Listing listing) {
+        AbstractNumbering aNumbering = addAbstractNumbering(listing);
+        addNumberingInstance(aNumbering, listing);
+        return this.listings.get(listing).getId();
+
     }
 
 
@@ -56,10 +67,16 @@ public final class NumberingModel {
         return result;
     }
 
-    private void addNumberingInstatce(AbstractNumbering abstractNumbering, Listing listing) {
-        NumberingInstance instance = new NumberingInstance(this.numberingInstances.size() + 1, abstractNumbering.getId()); 
-        this.numberingInstances.add(instance);
-        this.listings.put(listing, instance);
+    private void addNumberingInstance(AbstractNumbering abstractNumbering, Listing listing) {
+
+        this.listings.computeIfAbsent(listing, key -> {
+            NumberingInstance instance = new NumberingInstance(
+                    this.numberingInstances.size() + 1,
+                    abstractNumbering.getId());
+    
+            this.numberingInstances.add(instance);
+            return instance;
+        });        
     }
 
     public Map<List<NumberingLevel>, AbstractNumbering> getAbstractNumbering() {

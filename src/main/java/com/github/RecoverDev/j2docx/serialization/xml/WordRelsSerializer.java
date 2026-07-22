@@ -17,6 +17,13 @@ final class WordRelsSerializer {
                 .attribute("Target", "numbering.xml");
         }
 
+        if (documentParts.contains(DocumentParts.STYLES)) {
+            writer.emptyElement("Relationship")
+                .attribute("Id", "rId2")
+                .attribute("Type", "http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles")
+                .attribute("Target", "styles.xml");
+        }
+
         writer.endElement()
             .endDocument();
     }

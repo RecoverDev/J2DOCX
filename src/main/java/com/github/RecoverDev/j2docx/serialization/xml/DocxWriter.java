@@ -9,8 +9,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.github.RecoverDev.j2docx.DocumentX;
+import com.github.RecoverDev.j2docx.Styles;
 import com.github.RecoverDev.j2docx.serialization.packages.DocxPackageWriter;
 import com.github.RecoverDev.j2docx.serialization.packages.PackagePack;
+import com.github.RecoverDev.j2docx.serialization.xml.Exceptions.FileWriteException;
+import com.github.RecoverDev.j2docx.serialization.xml.Exceptions.ZipArchiveException;
 import com.github.RecoverDev.j2docx.serialization.xml.numbering.NumberingModel;
 import com.github.RecoverDev.j2docx.serialization.xml.numbering.NumberingSerializer;
 
@@ -56,15 +59,21 @@ public class DocxWriter {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-        NumberingModel.create(document);
+        parts.add(documentPack(document));
+
+        NumberingModel.create();
         NumberingModel numberingModel = NumberingModel.getInstance();
         if (numberingModel.getAbstractNumbering().size() > 0) {
             parts.add(numberingFile(numberingModel));
             documentParts.add(DocumentParts.NUMBERING);
         }
+
+        if (document.styles().size() > 0) {
+            parts.add(stylesFile(document.styles()));
+            documentParts.add(DocumentParts.STYLES);
+        }
         
         parts.add(contentTypePack(documentParts));
-        parts.add(documentPack(document));
         parts.add(wordRelsFile(documentParts));
         parts.add(relsFile(documentParts));
 
@@ -90,6 +99,17 @@ public class DocxWriter {
 
         return new PackagePack("word/document.xml", documentStream.toByteArray());
 
+    }
+
+    private static PackagePack stylesFile(Styles styles) {
+
+        ByteArrayOutputStream stylesStream = new ByteArrayOutputStream();
+
+        XmlStreamWriter writer = new XmlStreamWriterImpl(stylesStream);
+
+        SerializerDispatcher.dispatche(styles, writer);
+
+        return new PackagePack("word/styles.xml", stylesStream.toByteArray());
     }
 
     private static PackagePack contentTypePack(Set<DocumentParts> documentParts) {

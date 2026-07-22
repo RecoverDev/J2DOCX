@@ -1,8 +1,8 @@
-package com.github.RecoverDev.j2docx.serialization.xml;
+package com.github.RecoverDev.j2docx.serialization.xml.context;
 
 import java.util.List;
 
-interface SerializerContext {
+public interface SerializerContext {
 
     List<Serializer> getSerialize();
 

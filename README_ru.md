@@ -112,7 +112,7 @@ graph TD
 
 ### Version 0.2
 
-- [ ] Styles
+- [x] Styles
 
 - [x] Lists
 

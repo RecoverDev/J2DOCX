@@ -3,6 +3,7 @@ package com.github.RecoverDev.j2docx.block;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import com.github.RecoverDev.j2docx.DocumentElement;
@@ -122,5 +123,23 @@ public class Listing implements DocumentElement, Block {
     public ListingProperties getProperties() {
         return this.properties;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Listing other)) {
+            return false;
+        }
+
+        return Objects.equals(items, other.items)
+                && Objects.equals(properties, other.properties);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(items, properties);
+    }    
 
 }

@@ -1,6 +1,8 @@
 package com.github.RecoverDev.j2docx.serialization.xml;
 
 import com.github.RecoverDev.j2docx.properties.ParagraphProperties;
+import com.github.RecoverDev.j2docx.serialization.xml.context.Serializer;
+import com.github.RecoverDev.j2docx.serialization.xml.context.SerializerContext;
 
 final class ParagraphPropertiesSerializer {
 

@@ -1,12 +1,34 @@
 package com.github.RecoverDev.j2docx.serialization.xml;
 
 import com.github.RecoverDev.j2docx.properties.RunProperties;
+import com.github.RecoverDev.j2docx.serialization.xml.context.Serializer;
+import com.github.RecoverDev.j2docx.serialization.xml.context.SerializerContext;
 
 final class RunPropertiesSerializer {
 
     public static void serialize(RunProperties properties, XmlStreamWriter writer) {
 
         writer.startElement("w:rPr");
+
+        serializeProperties(properties, writer);
+
+        writer.endElement();
+    }
+
+    public static void serialize(RunProperties properties, SerializerContext context, XmlStreamWriter writer) {
+
+        writer.startElement("w:rPr");
+
+        for (Serializer serializer : context.getSerialize()) {
+            serializer.serialize(writer);
+        }
+
+        serializeProperties(properties, writer);
+
+        writer.endElement();
+    }
+
+    private static void serializeProperties(RunProperties properties, XmlStreamWriter writer) {
 
         if (properties.hasBold()) {
             writer.emptyElement("w:b");
@@ -41,8 +63,6 @@ final class RunPropertiesSerializer {
             writer.emptyElement("w:sz");
             writer.attribute("w:val", String.valueOf(properties.getFontSize() * 2));
         }
-
-        writer.endElement();
     }
 
 }

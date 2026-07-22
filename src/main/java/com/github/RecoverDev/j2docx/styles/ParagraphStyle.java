@@ -68,6 +68,14 @@ public final class ParagraphStyle extends Style<ParagraphStyle>{
         return self();
     }
 
+    public boolean hasParagraphProperties() {
+        return this.paragraphProperties != null;
+    }
+
+    public ParagraphProperties getParagraphProperties() {
+        return this.paragraphProperties;
+    }
+
     /**
      * Возвращает свойства форматирования текста.
      *
@@ -93,6 +101,14 @@ public final class ParagraphStyle extends Style<ParagraphStyle>{
     public ParagraphStyle run(Consumer<RunProperties> consumer) {
         consumer.accept(this.run());
         return self();
+    }
+
+    public boolean hasRunProperties() {
+        return this.runProperties != null;
+    }
+
+    public RunProperties getRunProperties() {
+        return this.runProperties;
     }
 
     // Next

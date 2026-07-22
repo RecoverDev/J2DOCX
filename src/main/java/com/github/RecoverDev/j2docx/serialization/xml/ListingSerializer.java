@@ -3,6 +3,8 @@ package com.github.RecoverDev.j2docx.serialization.xml;
 import com.github.RecoverDev.j2docx.block.Block;
 import com.github.RecoverDev.j2docx.block.Listing;
 import com.github.RecoverDev.j2docx.block.Paragraph;
+import com.github.RecoverDev.j2docx.serialization.xml.context.NumberingPropertiesSerializer;
+import com.github.RecoverDev.j2docx.serialization.xml.context.ParagraphSerializerContext;
 import com.github.RecoverDev.j2docx.serialization.xml.numbering.NumberingModel;
 
 public class ListingSerializer {
@@ -10,7 +12,9 @@ public class ListingSerializer {
     public static void serialize(Listing listing, XmlStreamWriter writer) {
 
         NumberingModel numberingModel = NumberingModel.getInstance();
-        Integer numId = numberingModel.getListings().get(listing).getId();
+        //Integer numId = numberingModel.getListings().get(listing).getId();
+        Integer numId = numberingModel.addListing(listing);
+
         Integer level = 0;
 
         listingSerialize(listing, numId, level, writer);

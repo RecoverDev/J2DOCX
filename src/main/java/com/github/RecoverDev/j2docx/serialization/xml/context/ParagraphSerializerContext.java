@@ -1,9 +1,9 @@
-package com.github.RecoverDev.j2docx.serialization.xml;
+package com.github.RecoverDev.j2docx.serialization.xml.context;
 
 import java.util.ArrayList;
 import java.util.List;
 
-final class ParagraphSerializerContext implements SerializerContext {
+public final class ParagraphSerializerContext implements SerializerContext {
 
     private List<Serializer> serialize = new ArrayList<>();
 

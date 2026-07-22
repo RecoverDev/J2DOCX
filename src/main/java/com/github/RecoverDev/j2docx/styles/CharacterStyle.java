@@ -63,6 +63,14 @@ public class CharacterStyle extends Style<CharacterStyle> {
         return self();
     }
 
+    public boolean hasRunProperties() {
+        return this.runProperties != null;
+    }
+
+    public RunProperties getRunProperties() {
+        return this.runProperties;
+    }
+
     @Override
     protected CharacterStyle self() {
         return this;

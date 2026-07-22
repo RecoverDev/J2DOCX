@@ -5,14 +5,28 @@ import java.util.List;
 import com.github.RecoverDev.j2docx.DocumentElement;
 import com.github.RecoverDev.j2docx.block.Paragraph;
 import com.github.RecoverDev.j2docx.inline.Inline;
+import com.github.RecoverDev.j2docx.serialization.xml.Exceptions.NotRegistrationStyleException;
+import com.github.RecoverDev.j2docx.serialization.xml.context.ParagraphSerializerContext;
+import com.github.RecoverDev.j2docx.serialization.xml.context.SerializerContext;
+import com.github.RecoverDev.j2docx.serialization.xml.context.ParagraphStyleContextSerializer;
 
 final class ParagraphSerialiazer {
 
     public static void serialize(Paragraph paragraph, XmlStreamWriter writer) {
         writer.startElement("w:p");
 
-        if (paragraph.getProperties().hasAnyProperty()) {
-            SerializerDispatcher.dispatche(paragraph.getProperties(), writer);
+        if (paragraph.getStyle() != null) {
+            if (paragraph.getStyle().getStyleId().isEmpty()) {
+                throw new NotRegistrationStyleException(new Throwable("Стиль " + paragraph.getStyle().getName() + " не зарегистрирован в списке стилей документа и не получил styleId"));
+            }
+
+            SerializerContext context = new ParagraphSerializerContext();
+            context.getSerialize().add(new ParagraphStyleContextSerializer(paragraph.getStyle().getStyleId()));
+            SerializerDispatcher.dispatche(paragraph.getProperties(), context, writer);
+        } else {
+            if (paragraph.getProperties().hasAnyProperty()) {
+                SerializerDispatcher.dispatche(paragraph.getProperties(), writer);
+            }
         }
 
         List<Inline> inlines = paragraph.getInlines();
@@ -25,6 +39,13 @@ final class ParagraphSerialiazer {
 
     public static void serialize(Paragraph paragraph, SerializerContext context, XmlStreamWriter writer) {
         writer.startElement("w:p");
+
+        if (paragraph.getStyle() != null) {
+            if (paragraph.getStyle().getStyleId().isEmpty()) {
+                throw new NotRegistrationStyleException(new Throwable("Стиль " + paragraph.getStyle().getName() + " не зарегистрирован в списке стилей документа и не получил styleId"));
+            }
+            context.getSerialize().add(new ParagraphStyleContextSerializer(paragraph.getStyle().getStyleId()));
+        }
 
 
         SerializerDispatcher.dispatche(paragraph.getProperties(), context, writer);

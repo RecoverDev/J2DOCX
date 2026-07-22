@@ -2,12 +2,35 @@ package com.github.RecoverDev.j2docx.serialization.xml;
 
 import com.github.RecoverDev.j2docx.enums.WidthType;
 import com.github.RecoverDev.j2docx.properties.TableProperties;
+import com.github.RecoverDev.j2docx.serialization.xml.context.Serializer;
+import com.github.RecoverDev.j2docx.serialization.xml.context.SerializerContext;
 
 final class TablePropertiesSerializer {
 
     public static void serialize(TableProperties properties, XmlStreamWriter writer) {
 
         writer.startElement("w:tblPr");
+
+        serializeProperties(properties, writer);
+
+        writer.endElement();
+    }
+
+    public static void serialize(TableProperties properties, SerializerContext context, XmlStreamWriter writer) {
+
+        writer.startElement("w:tblPr");
+
+        for (Serializer serializer : context.getSerialize()) {
+            serializer.serialize(writer);
+        }
+
+        serializeProperties(properties, writer);
+
+        writer.endElement();
+
+    }
+
+    private static void serializeProperties(TableProperties properties, XmlStreamWriter writer) {
 
         if (properties.hasWidth()) {
             WidthType type = properties.hasWidthType() ? properties.getWidthType() : WidthType.AUTO;
@@ -23,7 +46,7 @@ final class TablePropertiesSerializer {
 
         if (properties.hasBorderStyle()) {
 
-            int size = properties.hasBorderSize() ? properties.getBorderSize() : 1;
+            int size = properties.hasBorderSize() ? properties.getBorderSize() : 8;
             String color = properties.hasBorderColor() ? properties.getBorderColor() : "000000";
 
             writer.startElement("w:tblBorders");
@@ -74,8 +97,6 @@ final class TablePropertiesSerializer {
             writer.attribute("w:type", "dxa");
         }
 
-
-        writer.endElement();
     }
 
 }

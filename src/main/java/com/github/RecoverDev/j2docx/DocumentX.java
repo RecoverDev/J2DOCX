@@ -7,6 +7,7 @@ import java.util.List;
 import com.github.RecoverDev.j2docx.block.Block;
 import com.github.RecoverDev.j2docx.block.Paragraph;
 import com.github.RecoverDev.j2docx.block.Table;
+import com.github.RecoverDev.j2docx.styles.Style;
 
 /**
  * Представляет DOCX-документ.
@@ -44,8 +45,21 @@ public final class DocumentX implements DocumentElement {
      * @return коллекция стилей документа.
      */
     public Styles styles() {
-        return styles;
-    }    
+        return this.styles;
+    }
+
+
+    /**
+     * Добавляет новый стиль в коллекцию стилей документа.
+     * @param style добавляемый стиль
+     * @return текущий документ
+     */
+    public DocumentX style(Style<?> style) {
+        this.styles.add(style);
+        return this;
+    }
+
+
 
     /**
      * Добавляет блочный элемент в документ.

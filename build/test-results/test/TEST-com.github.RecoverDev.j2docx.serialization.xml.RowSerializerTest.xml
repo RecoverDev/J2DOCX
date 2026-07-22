@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.github.RecoverDev.j2docx.serialization.xml.RowSerializerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-07-16T13:23:57.923Z" hostname="WS-MSK-ANALIT69" time="0.003">
+<testsuite name="com.github.RecoverDev.j2docx.serialization.xml.RowSerializerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-07-22T13:37:37.880Z" hostname="WS-MSK-ANALIT69" time="0.004">
   <properties/>
-  <testcase name="Формирование XML для строки со свойствами" classname="com.github.RecoverDev.j2docx.serialization.xml.RowSerializerTest" time="0.002"/>
+  <testcase name="Формирование XML для строки со свойствами" classname="com.github.RecoverDev.j2docx.serialization.xml.RowSerializerTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

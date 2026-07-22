@@ -1,4 +1,6 @@
-package com.github.RecoverDev.j2docx.serialization.xml;
+package com.github.RecoverDev.j2docx.serialization.xml.context;
+
+import com.github.RecoverDev.j2docx.serialization.xml.XmlStreamWriter;
 
 public class NumberingPropertiesSerializer implements Serializer {
 
