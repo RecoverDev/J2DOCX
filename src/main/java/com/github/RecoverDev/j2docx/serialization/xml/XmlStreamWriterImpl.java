@@ -8,7 +8,7 @@ import javax.xml.stream.XMLStreamWriter;
 
 import com.github.RecoverDev.j2docx.serialization.xml.Exceptions.XmlException;
 
-final class XmlStreamWriterImpl implements XmlStreamWriter {
+public final class XmlStreamWriterImpl implements XmlStreamWriter {
     private static final XMLOutputFactory FACTORY =  XMLOutputFactory.newFactory();    
     private final XMLStreamWriter writer;
     private final OutputStream out;

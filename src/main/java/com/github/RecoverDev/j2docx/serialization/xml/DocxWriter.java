@@ -5,17 +5,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 import com.github.RecoverDev.j2docx.DocumentX;
-import com.github.RecoverDev.j2docx.Styles;
 import com.github.RecoverDev.j2docx.serialization.packages.DocxPackageWriter;
 import com.github.RecoverDev.j2docx.serialization.packages.PackagePack;
+import com.github.RecoverDev.j2docx.serialization.parts.DocumentPartBuilder;
 import com.github.RecoverDev.j2docx.serialization.xml.Exceptions.FileWriteException;
 import com.github.RecoverDev.j2docx.serialization.xml.Exceptions.ZipArchiveException;
-import com.github.RecoverDev.j2docx.serialization.xml.numbering.NumberingModel;
-import com.github.RecoverDev.j2docx.serialization.xml.numbering.NumberingSerializer;
 
 /**
  * Выполняет сериализацию документа J2DOCX в файл формата DOCX.
@@ -53,29 +49,31 @@ public class DocxWriter {
      */    
     public static void write(DocumentX document, String fileName) {
 
-        Set<DocumentParts> documentParts = new HashSet<>();
+        //Set<DocumentParts> documentParts = new HashSet<>();
 
         Collection<PackagePack> parts = new ArrayList<>();
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-        parts.add(documentPack(document));
+        parts = DocumentPartBuilder.Build(document);
 
-        NumberingModel.create();
-        NumberingModel numberingModel = NumberingModel.getInstance();
-        if (numberingModel.getAbstractNumbering().size() > 0) {
-            parts.add(numberingFile(numberingModel));
-            documentParts.add(DocumentParts.NUMBERING);
-        }
+        // parts.add(documentPack(document));
 
-        if (document.styles().size() > 0) {
-            parts.add(stylesFile(document.styles()));
-            documentParts.add(DocumentParts.STYLES);
-        }
+        // NumberingModel.create();
+        // NumberingModel numberingModel = NumberingModel.getInstance();
+        // if (numberingModel.getAbstractNumbering().size() > 0) {
+        //     parts.add(numberingFile(numberingModel));
+        //     documentParts.add(DocumentParts.NUMBERING);
+        // }
+
+        // if (document.styles().size() > 0) {
+        //     parts.add(stylesFile(document.styles()));
+        //     documentParts.add(DocumentParts.STYLES);
+        // }
         
-        parts.add(contentTypePack(documentParts));
-        parts.add(wordRelsFile(documentParts));
-        parts.add(relsFile(documentParts));
+        // parts.add(contentTypePack(documentParts));
+        // parts.add(wordRelsFile(documentParts));
+        // parts.add(relsFile(documentParts));
 
 
         DocxPackageWriter packageWriter = new DocxPackageWriter();
@@ -89,72 +87,72 @@ public class DocxWriter {
 
     }
 
-    private static PackagePack documentPack(DocumentX document) {
+    // private static PackagePack documentPack(DocumentX document) {
 
-        ByteArrayOutputStream documentStream = new ByteArrayOutputStream();
+    //     ByteArrayOutputStream documentStream = new ByteArrayOutputStream();
 
-        XmlStreamWriter writer = new XmlStreamWriterImpl(documentStream);
+    //     XmlStreamWriter writer = new XmlStreamWriterImpl(documentStream);
 
-        SerializerDispatcher.dispatche(document, writer);
+    //     SerializerDispatcher.dispatche(document, writer);
 
-        return new PackagePack("word/document.xml", documentStream.toByteArray());
+    //     return new PackagePack("word/document.xml", documentStream.toByteArray());
 
-    }
+    // }
 
-    private static PackagePack stylesFile(Styles styles) {
+    // private static PackagePack stylesFile(Styles styles) {
 
-        ByteArrayOutputStream stylesStream = new ByteArrayOutputStream();
+    //     ByteArrayOutputStream stylesStream = new ByteArrayOutputStream();
 
-        XmlStreamWriter writer = new XmlStreamWriterImpl(stylesStream);
+    //     XmlStreamWriter writer = new XmlStreamWriterImpl(stylesStream);
 
-        SerializerDispatcher.dispatche(styles, writer);
+    //     SerializerDispatcher.dispatche(styles, writer);
 
-        return new PackagePack("word/styles.xml", stylesStream.toByteArray());
-    }
+    //     return new PackagePack("word/styles.xml", stylesStream.toByteArray());
+    // }
 
-    private static PackagePack contentTypePack(Set<DocumentParts> documentParts) {
+    // private static PackagePack contentTypePack(Set<DocumentParts> documentParts) {
 
-        ByteArrayOutputStream contentStream = new ByteArrayOutputStream();
+    //     ByteArrayOutputStream contentStream = new ByteArrayOutputStream();
 
-        XmlStreamWriter writer = new XmlStreamWriterImpl(contentStream);
+    //     XmlStreamWriter writer = new XmlStreamWriterImpl(contentStream);
 
-        ContentTypeSerializer.serialize(documentParts, writer);
+    //     ContentTypeSerializer.serialize(documentParts, writer);
 
-        return new PackagePack("[Content_Types].xml", contentStream.toByteArray());
-    }
+    //     return new PackagePack("[Content_Types].xml", contentStream.toByteArray());
+    // }
 
-    private static PackagePack relsFile(Set<DocumentParts> documentParts) {
+    // private static PackagePack relsFile(Set<DocumentParts> documentParts) {
 
-        ByteArrayOutputStream relsStream = new ByteArrayOutputStream();
+    //     ByteArrayOutputStream relsStream = new ByteArrayOutputStream();
 
-        XmlStreamWriter writer = new XmlStreamWriterImpl(relsStream);
+    //     XmlStreamWriter writer = new XmlStreamWriterImpl(relsStream);
 
-        RelsFileSerializer.serialize(documentParts, writer);
+    //     RelsFileSerializer.serialize(documentParts, writer);
 
-        return new PackagePack("_rels/.rels", relsStream.toByteArray());
-    }
+    //     return new PackagePack("_rels/.rels", relsStream.toByteArray());
+    // }
 
-    private static PackagePack wordRelsFile(Set<DocumentParts> documentParts) {
+    // private static PackagePack wordRelsFile(Set<DocumentParts> documentParts) {
 
-        ByteArrayOutputStream relsStream = new ByteArrayOutputStream();
+    //     ByteArrayOutputStream relsStream = new ByteArrayOutputStream();
 
-        XmlStreamWriter writer = new XmlStreamWriterImpl(relsStream);
+    //     XmlStreamWriter writer = new XmlStreamWriterImpl(relsStream);
 
-        WordRelsSerializer.serialize(documentParts, writer);
+    //     WordRelsSerializer.serialize(documentParts, writer);
 
-        return new PackagePack("word/_rels/document.xml.rels", relsStream.toByteArray());
-    }
+    //     return new PackagePack("word/_rels/document.xml.rels", relsStream.toByteArray());
+    // }
 
-    private static PackagePack numberingFile(NumberingModel model) {
+    // private static PackagePack numberingFile(NumberingModel model) {
 
-        ByteArrayOutputStream numberingStream = new ByteArrayOutputStream();
+    //     ByteArrayOutputStream numberingStream = new ByteArrayOutputStream();
 
-        XmlStreamWriter writer = new XmlStreamWriterImpl(numberingStream);
+    //     XmlStreamWriter writer = new XmlStreamWriterImpl(numberingStream);
 
-        NumberingSerializer.serialize(model, writer);
+    //     NumberingSerializer.serialize(model, writer);
 
-        return new PackagePack("word/numbering.xml", numberingStream.toByteArray());
-    }
+    //     return new PackagePack("word/numbering.xml", numberingStream.toByteArray());
+    // }
 
     private static void writeToFile(String name, ByteArrayOutputStream out) {
 

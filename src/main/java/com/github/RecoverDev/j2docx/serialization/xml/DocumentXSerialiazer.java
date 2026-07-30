@@ -6,7 +6,7 @@ import com.github.RecoverDev.j2docx.DocumentElement;
 import com.github.RecoverDev.j2docx.DocumentX;
 import com.github.RecoverDev.j2docx.block.Block;
 
-final class DocumentXSerialiazer {
+public final class DocumentXSerialiazer {
 
     public static void serialize(DocumentX document, XmlStreamWriter writer) {
         writer.startDocument()
