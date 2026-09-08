@@ -8,12 +8,8 @@ import java.io.OutputStream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.github.RecoverDev.j2docx.DocumentX;
-import com.github.RecoverDev.j2docx.block.Cell;
 import com.github.RecoverDev.j2docx.block.Listing;
 import com.github.RecoverDev.j2docx.block.Paragraph;
-import com.github.RecoverDev.j2docx.block.Row;
-import com.github.RecoverDev.j2docx.block.Table;
 import com.github.RecoverDev.j2docx.enums.NumberingStyle;
 import com.github.RecoverDev.j2docx.inline.Run;
 import com.github.RecoverDev.j2docx.serialization.xml.numbering.NumberingModel;
