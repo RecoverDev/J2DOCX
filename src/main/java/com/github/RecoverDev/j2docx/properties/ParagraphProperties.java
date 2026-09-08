@@ -1,5 +1,8 @@
 package com.github.RecoverDev.j2docx.properties;
 
+import java.util.Collection;
+import java.util.Collections;
+
 import com.github.RecoverDev.j2docx.DocumentElement;
 import com.github.RecoverDev.j2docx.enums.ParagraphAlignment;
 
@@ -393,6 +396,11 @@ public final class ParagraphProperties implements DocumentElement{
     public ParagraphProperties clearPageBreakBefore() {
         this.pageBreakBefore = null;
         return this;
+    }
+
+    @Override
+    public Collection<DocumentElement> getElements() {
+        return Collections.emptyList();
     }
 
 }

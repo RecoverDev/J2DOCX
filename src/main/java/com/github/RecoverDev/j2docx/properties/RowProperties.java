@@ -1,5 +1,8 @@
 package com.github.RecoverDev.j2docx.properties;
 
+import java.util.Collection;
+import java.util.Collections;
+
 import com.github.RecoverDev.j2docx.DocumentElement;
 import com.github.RecoverDev.j2docx.enums.HeightRule;
 
@@ -194,6 +197,11 @@ public class RowProperties implements DocumentElement {
     public RowProperties clearRepeateHeader() {
         this.repeatHeader = null;
         return this;
+    }
+
+    @Override
+    public Collection<DocumentElement> getElements() {
+        return Collections.emptyList();
     }
 
 }

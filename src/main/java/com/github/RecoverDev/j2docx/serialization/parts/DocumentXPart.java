@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.github.RecoverDev.j2docx.DocumentX;
+import com.github.RecoverDev.j2docx.serialization.models.DocumentModel;
 import com.github.RecoverDev.j2docx.serialization.xml.ContentTypes;
 import com.github.RecoverDev.j2docx.serialization.xml.DocumentXSerialiazer;
 import com.github.RecoverDev.j2docx.serialization.xml.Relationships;
@@ -15,6 +16,10 @@ public class DocumentXPart implements DocumentPart {
     private final String path = "word";
     private DocumentX document;
     private final List<DocumentPart> parts = new ArrayList<>();
+
+    public DocumentXPart(DocumentModel model) {
+        this.document = model.getDocumentX();
+    }
 
     public DocumentXPart(DocumentX documentX) {
         this.document = documentX;
@@ -46,7 +51,7 @@ public class DocumentXPart implements DocumentPart {
     }
 
     @Override
-    public void addPart(DocumentPart part) {
+    public void addDependency(DocumentPart part) {
         this.parts.add(part);
     }
 

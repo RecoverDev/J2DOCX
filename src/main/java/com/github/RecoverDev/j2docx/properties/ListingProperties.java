@@ -1,5 +1,8 @@
 package com.github.RecoverDev.j2docx.properties;
 
+import java.util.Collection;
+import java.util.Collections;
+
 import com.github.RecoverDev.j2docx.DocumentElement;
 import com.github.RecoverDev.j2docx.enums.NumberingStyle;
 
@@ -253,4 +256,8 @@ public class ListingProperties implements DocumentElement {
         return this;
     }
 
+    @Override
+    public Collection<DocumentElement> getElements() {
+        return Collections.emptyList();
+    }
 }

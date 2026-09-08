@@ -1,5 +1,7 @@
 package com.github.RecoverDev.j2docx;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -256,6 +258,11 @@ public final class Styles implements Iterable<Style<?>>, DocumentElement {
         }
 
         return baseId + String.valueOf(index);
+    }
+
+    @Override
+    public Collection<DocumentElement> getElements() {
+        return Collections.unmodifiableCollection(this.styles.values());
     }
 
 }

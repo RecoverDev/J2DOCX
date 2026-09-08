@@ -1,5 +1,8 @@
 package com.github.RecoverDev.j2docx.properties;
 
+import java.util.Collection;
+import java.util.Collections;
+
 import com.github.RecoverDev.j2docx.DocumentElement;
 import com.github.RecoverDev.j2docx.enums.BorderStyle;
 import com.github.RecoverDev.j2docx.enums.TableAlignment;
@@ -306,6 +309,11 @@ public final class TableProperties implements DocumentElement {
     public TableProperties clearIndent() {
         this.indent = null;
         return this;
+    }
+
+    @Override
+    public Collection<DocumentElement> getElements() {
+        return Collections.emptyList();
     }
 
 }

@@ -12,8 +12,8 @@ public class ListingSerializer {
     public static void serialize(Listing listing, XmlStreamWriter writer) {
 
         NumberingModel numberingModel = NumberingModel.getInstance();
-        //Integer numId = numberingModel.getListings().get(listing).getId();
-        Integer numId = numberingModel.addListing(listing);
+        Integer numId = numberingModel.getListings().get(listing).getId();
+        //Integer numId = numberingModel.addListing(listing);
 
         Integer level = 0;
 

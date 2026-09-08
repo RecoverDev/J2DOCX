@@ -1,7 +1,10 @@
 package com.github.RecoverDev.j2docx.styles;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.function.Consumer;
 
+import com.github.RecoverDev.j2docx.DocumentElement;
 import com.github.RecoverDev.j2docx.properties.CellProperties;
 import com.github.RecoverDev.j2docx.properties.ParagraphProperties;
 import com.github.RecoverDev.j2docx.properties.RowProperties;
@@ -232,6 +235,11 @@ public final class TableStyle extends Style<TableStyle> {
     @Override
     protected TableStyle self() {
         return this;
+    }
+
+    @Override
+    public Collection<DocumentElement> getElements() {
+        return Collections.emptyList();
     }
 
 }

@@ -1,6 +1,7 @@
 package com.github.RecoverDev.j2docx.block;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
@@ -143,6 +144,15 @@ public final class Table implements Block, Stylable<Table, TableStyle>, Document
      */
     public TableProperties getProperties() {
         return this.properties;
+    }
+
+
+    @Override
+    public Collection<DocumentElement> getElements() {
+        return this.rows.stream()
+                          .filter(DocumentElement.class::isInstance)
+                          .map(DocumentElement.class::cast)
+                          .toList();
     }
 
 }

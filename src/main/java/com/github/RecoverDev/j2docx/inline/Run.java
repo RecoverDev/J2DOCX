@@ -1,5 +1,7 @@
 package com.github.RecoverDev.j2docx.inline;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Consumer;
 
@@ -110,6 +112,11 @@ public final class Run implements Inline, Stylable<Run, CharacterStyle>, Documen
      */
     public RunProperties getProperties() {
         return this.properties;
+    }
+
+    @Override
+    public Collection<DocumentElement> getElements() {
+        return Collections.emptyList();
     }
 
 }

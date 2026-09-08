@@ -1,6 +1,7 @@
 package com.github.RecoverDev.j2docx;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -111,5 +112,14 @@ public final class DocumentX implements DocumentElement {
     public List<Block> getBlocks() {
         return Collections.unmodifiableList(blocks);
     }
+
+    @Override
+    public Collection<DocumentElement> getElements() {
+        return this.blocks.stream()
+                          .filter(DocumentElement.class::isInstance)
+                          .map(DocumentElement.class::cast)
+                          .toList();
+    }
+
 
 }

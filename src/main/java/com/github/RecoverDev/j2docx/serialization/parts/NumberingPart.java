@@ -41,7 +41,7 @@ public final class NumberingPart implements DocumentPart {
     }
 
     @Override
-    public void addPart(DocumentPart part) {
+    public void addDependency(DocumentPart part) {
         this.parts.add(part);
     }
 

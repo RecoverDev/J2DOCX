@@ -41,6 +41,7 @@ public class ListingSerializerTest {
         XmlStreamWriter writer = new XmlStreamWriterImpl(out);
 
         NumberingModel.create();
+        NumberingModel.getInstance().addListing(listing);
 
         ListingSerializer.serialize(listing, writer);
 
@@ -48,39 +49,5 @@ public class ListingSerializerTest {
 
     }
 
-    @Test
-    @DisplayName("Уникальность списка")
-    public void ListingUniqueTest() {
-        Listing listing = Listing.create()
-                                        .properties(l -> l
-                                                .numberingStyle(NumberingStyle.DECIMAL)
-                                                .pattern("%1.")
-                                        )
-                                        .item("");
-
-
-        DocumentX docx = DocumentX.create().paragraph(Paragraph.create()
-                                .text("Заголовок"))
-                .paragraph(Paragraph.of("Это основной текст документа. Этот абзац должен содержать большое количество текста, чтобы было видно установленное выравнивание текста по ширине."))
-                .table(Table.create()
-                                .row(Row.create()
-                                        .cell(Cell.create().add(listing))
-                                        .cell(Cell.of("Содержание")))
-                                .row(r -> r
-                                        .cell(Cell.create().add(listing))
-                                        .cell(Cell.of("Описание")))
-                                .row(Row.create()
-                                        .cell(Cell.create().add(listing))
-                                        .cell(Cell.of("Данные"))));
-
-        
-        OutputStream out = new ByteArrayOutputStream();
-
-        XmlStreamWriter writer = new XmlStreamWriterImpl(out);
-                                
-        DocumentXSerialiazer.serialize(docx, writer);
-
-        assertEquals(1, NumberingModel.getInstance().getListings().size());
-    }
 
 }

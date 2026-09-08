@@ -1,7 +1,10 @@
 package com.github.RecoverDev.j2docx.styles;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.function.Consumer;
 
+import com.github.RecoverDev.j2docx.DocumentElement;
 import com.github.RecoverDev.j2docx.properties.RunProperties;
 
 /**
@@ -76,4 +79,8 @@ public class CharacterStyle extends Style<CharacterStyle> {
         return this;
     }
 
+    @Override
+    public Collection<DocumentElement> getElements() {
+        return Collections.emptyList();
+    }
 }

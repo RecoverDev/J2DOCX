@@ -9,9 +9,14 @@ import java.util.stream.Collectors;
 
 import com.github.RecoverDev.j2docx.DocumentX;
 import com.github.RecoverDev.j2docx.block.Listing;
+import com.github.RecoverDev.j2docx.serialization.models.DocumentModel;
+import com.github.RecoverDev.j2docx.serialization.models.Model;
 
-public final class NumberingModel {
+public final class NumberingModel implements Model{
+    
     private static NumberingModel instanceModel = new NumberingModel();
+    private List<Model> graphModels = new ArrayList<>();
+
 
     private final Map<List<NumberingLevel>, AbstractNumbering> abstractNumbering = new HashMap<>();
     private final List<NumberingInstance> numberingInstances = new ArrayList<>();
@@ -91,6 +96,34 @@ public final class NumberingModel {
         return listings;
     }
 
+    @Override
+    public void analize(Model parent) {
+        if (parent instanceof DocumentModel documentModel) {
+            for (Listing list : documentModel.getLisrtings()) {
+                AbstractNumbering aNumbering = addAbstractNumbering(list);
+                addNumberingInstance(aNumbering, list);
+            }
+
+            if (this.listings.size() > 0 ) {
+                documentModel.addModelToGraph(this);
+            }
+        }
+    }
+
+    @Override
+    public void setGraph(List<Model> models) {
+        this.graphModels = models;
+    }
+
+    @Override
+    public void addModelToGraph(Model model) {
+        this.graphModels.add(model);
+    }
+
+    @Override
+    public List<Model> getModels() {
+        return this.graphModels;
+    }
 
 }
 

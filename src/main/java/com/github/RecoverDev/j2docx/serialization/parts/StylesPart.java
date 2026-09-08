@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.github.RecoverDev.j2docx.Styles;
+import com.github.RecoverDev.j2docx.serialization.models.StylesModel;
 import com.github.RecoverDev.j2docx.serialization.xml.ContentTypes;
 import com.github.RecoverDev.j2docx.serialization.xml.Relationships;
 import com.github.RecoverDev.j2docx.serialization.xml.StylesSerializer;
@@ -15,6 +16,10 @@ public final class StylesPart implements DocumentPart {
     private final String path = "word";
     private final Styles styles;
     private final List<DocumentPart> parts = new ArrayList<>();
+
+    public StylesPart(StylesModel model) {
+        this.styles = model.getStyles();
+    }
 
 
     public StylesPart(Styles styles) {
@@ -47,7 +52,7 @@ public final class StylesPart implements DocumentPart {
     }
 
     @Override
-    public void addPart(DocumentPart part) {
+    public void addDependency(DocumentPart part) {
         this.parts.add(part);
     }
 

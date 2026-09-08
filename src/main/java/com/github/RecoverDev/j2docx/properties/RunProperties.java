@@ -1,5 +1,8 @@
 package com.github.RecoverDev.j2docx.properties;
 
+import java.util.Collection;
+import java.util.Collections;
+
 import com.github.RecoverDev.j2docx.DocumentElement;
 import com.github.RecoverDev.j2docx.enums.HighlightColor;
 import com.github.RecoverDev.j2docx.enums.Underline;
@@ -314,6 +317,11 @@ public final class RunProperties implements DocumentElement{
     public RunProperties clearHighlight () {
         this.highlight = null;
         return this;
+    }
+
+    @Override
+    public Collection<DocumentElement> getElements() {
+        return Collections.emptyList();
     }
 
 }

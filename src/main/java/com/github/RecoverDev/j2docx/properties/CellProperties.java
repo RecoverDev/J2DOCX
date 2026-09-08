@@ -1,5 +1,8 @@
 package com.github.RecoverDev.j2docx.properties;
 
+import java.util.Collection;
+import java.util.Collections;
+
 import com.github.RecoverDev.j2docx.DocumentElement;
 import com.github.RecoverDev.j2docx.enums.BorderStyle;
 import com.github.RecoverDev.j2docx.enums.VerticalAlignment;
@@ -309,6 +312,11 @@ public final class CellProperties implements DocumentElement {
     public CellProperties clearGridSpan() {
         this.gridSpan = null;
         return this;
+    }
+
+    @Override
+    public Collection<DocumentElement> getElements() {
+        return Collections.emptyList();
     }
 
 }
