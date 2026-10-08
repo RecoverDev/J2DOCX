@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.github.RecoverDev.j2docx.serialization.document.DocxWriterTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-09-08T07:23:07.651Z" hostname="WS-MSK-ANALIT69" time="0.117">
+<testsuite name="com.github.RecoverDev.j2docx.serialization.document.DocxWriterTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-07T14:23:24.572Z" hostname="WS-MSK-ANALIT69" time="0.155">
   <properties/>
-  <testcase name="Формирование документа с Table" classname="com.github.RecoverDev.j2docx.serialization.document.DocxWriterTest" time="0.07"/>
-  <testcase name="Формирование документа с ParagraphProperties и RunProperties" classname="com.github.RecoverDev.j2docx.serialization.document.DocxWriterTest" time="0.006"/>
+  <testcase name="Формирование документа с Table" classname="com.github.RecoverDev.j2docx.serialization.document.DocxWriterTest" time="0.108"/>
+  <testcase name="Формирование документа с ParagraphProperties и RunProperties" classname="com.github.RecoverDev.j2docx.serialization.document.DocxWriterTest" time="0.005"/>
   <testcase name="Создание документа на основе объекта DocumentX" classname="com.github.RecoverDev.j2docx.serialization.document.DocxWriterTest" time="0.003"/>
-  <testcase name="Формирование документа состилями" classname="com.github.RecoverDev.j2docx.serialization.document.DocxWriterTest" time="0.02"/>
+  <testcase name="Формирование документа состилями" classname="com.github.RecoverDev.j2docx.serialization.document.DocxWriterTest" time="0.036"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

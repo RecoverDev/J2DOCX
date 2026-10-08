@@ -17,7 +17,7 @@ public class DocumentSerialiazerTest {
     @Test
     @DisplayName("Сериализация пустого DocumentX в XML")
     public void serialiazeTest() {
-        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"><w:body></w:body></w:document>";
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"><w:body><w:sectPr><w:pgSz w:w=\"11906\" w:h=\"16838\"/></w:sectPr></w:body></w:document>";
         DocumentX docx = DocumentX.create();
         OutputStream out = new ByteArrayOutputStream();
         XmlStreamWriter writer = new XmlStreamWriterImpl(out);
@@ -41,7 +41,7 @@ public class DocumentSerialiazerTest {
                                                 .keepLines()
                                             ));
 
-        String result = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"><w:body><w:p><w:pPr><w:jc w:val=\"left\"/><w:spacing w:after=\"240\" w:before=\"240\"/><w:keepLines/></w:pPr><w:r><w:t xml:space=\"preserve\">Hello, World!</w:t></w:r></w:p></w:body></w:document>";
+        String result = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"><w:body><w:p><w:pPr><w:jc w:val=\"left\"/><w:spacing w:after=\"240\" w:before=\"240\"/><w:keepLines/></w:pPr><w:r><w:t xml:space=\"preserve\">Hello, World!</w:t></w:r></w:p><w:sectPr><w:pgSz w:w=\"11906\" w:h=\"16838\"/></w:sectPr></w:body></w:document>";
         OutputStream out = new ByteArrayOutputStream();
         XmlStreamWriter writer = new XmlStreamWriterImpl(out);
 

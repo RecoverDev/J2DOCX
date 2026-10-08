@@ -10,7 +10,7 @@ import com.github.RecoverDev.j2docx.serialization.xml.context.ParagraphSerialize
 import com.github.RecoverDev.j2docx.serialization.xml.context.SerializerContext;
 import com.github.RecoverDev.j2docx.serialization.xml.context.ParagraphStyleContextSerializer;
 
-final class ParagraphSerialiazer {
+public final class ParagraphSerialiazer {
 
     public static void serialize(Paragraph paragraph, XmlStreamWriter writer) {
         writer.startElement("w:p");

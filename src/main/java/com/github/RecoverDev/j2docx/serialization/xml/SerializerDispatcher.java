@@ -19,6 +19,7 @@ import com.github.RecoverDev.j2docx.serialization.xml.context.SerializerContext;
 import com.github.RecoverDev.j2docx.styles.CharacterStyle;
 import com.github.RecoverDev.j2docx.styles.ParagraphStyle;
 import com.github.RecoverDev.j2docx.styles.TableStyle;
+import com.github.RecoverDev.j2docx.section.Section;
 
 final class SerializerDispatcher {
 
@@ -41,6 +42,7 @@ final class SerializerDispatcher {
                 case CharacterStyle rStyle -> CharacterStyleSerializer.serialize(rStyle, xmlWriter);
                 case TableStyle tStyle -> TableStyleSerializer.serialize(tStyle, xmlWriter);
                 case Styles styles -> StylesSerializer.serialize(styles, xmlWriter);
+                case Section section -> SectionSerializer.serialize(section, xmlWriter);
 
             default -> {
                 throw new SerializerException(new Throwable("Сериализатор объекта " + element.toString() + " не определен"));

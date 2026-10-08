@@ -29,7 +29,7 @@ public interface DocumentPart {
 
         return switch(model) {
             case DocumentModel documentModel -> new DocumentXPart(documentModel);
-            case NumberingModel numberingModel -> new NumberingPart();
+            case NumberingModel _ -> new NumberingPart();
             case StylesModel styleModel -> new StylesPart(styleModel);
             default -> throw new IllegalArgumentException("Неизвестный тип модели: " + model.getClass().getName());
         };

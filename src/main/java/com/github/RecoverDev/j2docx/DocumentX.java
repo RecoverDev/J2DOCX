@@ -8,6 +8,8 @@ import java.util.List;
 import com.github.RecoverDev.j2docx.block.Block;
 import com.github.RecoverDev.j2docx.block.Paragraph;
 import com.github.RecoverDev.j2docx.block.Table;
+import com.github.RecoverDev.j2docx.enums.StructureType;
+import com.github.RecoverDev.j2docx.section.Section;
 import com.github.RecoverDev.j2docx.styles.Style;
 
 /**
@@ -21,9 +23,19 @@ import com.github.RecoverDev.j2docx.styles.Style;
  */
 public final class DocumentX implements DocumentElement {
 
-    private final List<Block> blocks = new ArrayList<>();
+    private final List<RootElement> blocks = new ArrayList<>();
 
     private final Styles styles = new Styles();
+
+    private StructureType structureType = StructureType.UNDEFINED;
+
+    public StructureType getStructureType() {
+        return structureType;
+    }
+
+    public void setStructureType(StructureType structureType) {
+        this.structureType = structureType;
+    }
 
     private DocumentX() {}
 
@@ -68,7 +80,8 @@ public final class DocumentX implements DocumentElement {
      * @param block добавляемый элемент
      * @return текущий документ
      */
-    public DocumentX add(Block block) {
+    public DocumentX add(RootElement block) {
+        validateStructure(block);
         blocks.add(block);
         return this;
     }
@@ -109,7 +122,7 @@ public final class DocumentX implements DocumentElement {
      *
      * @return неизменяемый список элементов документа
      */
-    public List<Block> getBlocks() {
+    public List<RootElement> getBlocks() {
         return Collections.unmodifiableList(blocks);
     }
 
@@ -119,6 +132,38 @@ public final class DocumentX implements DocumentElement {
                           .filter(DocumentElement.class::isInstance)
                           .map(DocumentElement.class::cast)
                           .toList();
+    }
+
+    private void validateStructure(Object element) {
+        if (element instanceof Section) {
+            useSectionedStructure();
+        } else {
+            useDirectStructure();
+        }
+    }
+
+    private void useSectionedStructure() {
+
+        if (this.structureType == StructureType.UNDEFINED) {
+            this.structureType = StructureType.SECTIONED;
+        }
+        if (this.structureType == StructureType.DIRECT) {
+            throw new IllegalStateException(
+                "Cannot add Section to a document containing direct document elements"
+            );
+        }
+    }
+
+    private void useDirectStructure() {
+
+        if (this.structureType == StructureType.UNDEFINED) {
+            this.structureType = StructureType.DIRECT;
+        }
+        if (this.structureType == StructureType.SECTIONED) {
+            throw new IllegalStateException(
+                "Cannot add document elements to a document containing sections"
+            );
+        }
     }
 
 

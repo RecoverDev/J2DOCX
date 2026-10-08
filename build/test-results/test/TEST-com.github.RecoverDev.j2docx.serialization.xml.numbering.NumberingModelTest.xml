@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.github.RecoverDev.j2docx.serialization.xml.numbering.NumberingModelTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-09-08T07:23:07.794Z" hostname="WS-MSK-ANALIT69" time="0.006">
+<testsuite name="com.github.RecoverDev.j2docx.serialization.xml.numbering.NumberingModelTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-07T14:23:24.749Z" hostname="WS-MSK-ANALIT69" time="0.007">
   <properties/>
-  <testcase name="Создание numberingModel из DocumentX" classname="com.github.RecoverDev.j2docx.serialization.xml.numbering.NumberingModelTest" time="0.005"/>
+  <testcase name="Создание numberingModel из DocumentX" classname="com.github.RecoverDev.j2docx.serialization.xml.numbering.NumberingModelTest" time="0.006"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

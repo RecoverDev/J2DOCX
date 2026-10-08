@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.github.RecoverDev.j2docx.DocumentElement;
+import com.github.RecoverDev.j2docx.RootElement;
 import com.github.RecoverDev.j2docx.Stylable;
 import com.github.RecoverDev.j2docx.properties.TableProperties;
 import com.github.RecoverDev.j2docx.styles.TableStyle;
@@ -24,7 +25,7 @@ import com.github.RecoverDev.j2docx.styles.TableStyle;
  *   <li>настройка форматирования — {@code properties(...)}.</li>
  * </ul>
  */
-public final class Table implements Block, Stylable<Table, TableStyle>, DocumentElement {
+public final class Table implements RootElement, Block, Stylable<Table, TableStyle>, DocumentElement {
 
     private final List<Row> rows = new ArrayList<>();
 

@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 import com.github.RecoverDev.j2docx.DocumentElement;
+import com.github.RecoverDev.j2docx.RootElement;
 import com.github.RecoverDev.j2docx.properties.ListingProperties;
 
 /**
@@ -23,7 +24,7 @@ import com.github.RecoverDev.j2docx.properties.ListingProperties;
  *   <li>настройка форматирования — {@code properties(...)}.</li>
  * </ul>
  */
-public class Listing implements DocumentElement, Block {
+public class Listing implements RootElement, DocumentElement, Block {
 
     private final List<Block> items = new ArrayList<>();
 

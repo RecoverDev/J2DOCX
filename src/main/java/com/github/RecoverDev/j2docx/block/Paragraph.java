@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import com.github.RecoverDev.j2docx.DocumentElement;
+import com.github.RecoverDev.j2docx.RootElement;
 import com.github.RecoverDev.j2docx.Stylable;
 import com.github.RecoverDev.j2docx.inline.Inline;
 import com.github.RecoverDev.j2docx.inline.Run;
@@ -27,7 +28,7 @@ import com.github.RecoverDev.j2docx.styles.ParagraphStyle;
  *   <li>настройка форматирования — {@code properties(...)}.</li>
  * </ul>
  */
-public final class Paragraph implements DocumentElement, Block, Stylable<Paragraph, ParagraphStyle>  {
+public final class Paragraph implements RootElement, DocumentElement, Block, Stylable<Paragraph, ParagraphStyle>  {
     
     private final List<Inline> inlines = new ArrayList<>();
 

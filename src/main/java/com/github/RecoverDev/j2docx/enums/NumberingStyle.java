@@ -22,5 +22,4 @@ public enum NumberingStyle {
         return xmlValue;
     }
 
-
 }
