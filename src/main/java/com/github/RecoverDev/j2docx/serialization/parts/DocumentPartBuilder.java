@@ -5,16 +5,17 @@ import java.util.List;
 
 import com.github.RecoverDev.j2docx.serialization.models.DocumentModel;
 import com.github.RecoverDev.j2docx.serialization.models.Model;
+import com.github.RecoverDev.j2docx.utils.UniqueIntGenerator;
 
 public class DocumentPartBuilder {
 
-    public static List<DocumentPart> Build(DocumentModel model) {
+    public static List<DocumentPart> Build(DocumentModel model, UniqueIntGenerator generator) {
         List<DocumentPart> parts = new ArrayList<>();
 
         DocumentXPart documentPart = createDocumentPart(model);
 
         parts.add(documentPart);
-        parts.addAll(RelsFilePartBuilder.relsBuild(documentPart));
+        parts.addAll(RelsFilePartBuilder.relsBuild(documentPart, generator));
         parts.add(RelsFilePartBuilder.contentTypeBuild(documentPart));
 
         return parts;

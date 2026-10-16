@@ -2,18 +2,29 @@ package com.github.RecoverDev.j2docx.serialization.models;
 
 import com.github.RecoverDev.j2docx.DocumentX;
 import com.github.RecoverDev.j2docx.serialization.xml.numbering.NumberingModel;
+import com.github.RecoverDev.j2docx.utils.UniqueIntGenerator;
+import com.github.RecoverDev.j2docx.headerfooter.Header;
+
 
 public class DocumentModelFactory {
 
-    public static DocumentModel factory(DocumentX document) {
+    public static DocumentModel factory(DocumentX document, UniqueIntGenerator generator) {
 
         DocumentModel model = Model.of(document);
 
         model.analize(null);
 
-        var stylesModel = Model.of(document.styles());
+        for (Header header : model.getHeaders()) {
+            header.setHeaderId(String.valueOf(generator.next()));
+            HeadersModel headersModel = Model.of(header);
+            headersModel.analize(model);
+        }
+
+        StylesModel stylesModel = Model.of(document.styles());
 
         stylesModel.analize(model);
+
+
 
         NumberingModel.create();
         NumberingModel numberingModel = NumberingModel.getInstance();

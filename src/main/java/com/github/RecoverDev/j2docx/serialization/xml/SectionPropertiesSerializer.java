@@ -26,6 +26,24 @@ public final class SectionPropertiesSerializer {
 
         writer.startElement("w:sectPr");
 
+        if (section.hasDefaultHeader()) {
+            writer.emptyElement("w:headerReference")
+                  .attribute("w:type", "default")
+                  .attribute("r:id", "rId" + section.getDefaultHeader().getHeaderId());
+        }
+
+        if (section.hasFirstHeader()) {
+            writer.emptyElement("w:headerReference")
+                  .attribute("w:type", "first")
+                  .attribute("r:id", "rId" + section.getFirstHeader().getHeaderId());
+        }
+
+        if (section.hasEvenHeader()) {
+            writer.emptyElement("w:headerReference")
+                  .attribute("w:type", "even")
+                  .attribute("r:id", "rId" + section.getEvenHeader().getHeaderId());
+        }
+
         if (orientation == PageOrientation.LANDSCAPE) {
             writer.emptyElement("w:pgSz")
                   .attribute("w:w", String.valueOf(pageSize.getHeightTwips()))
@@ -35,21 +53,6 @@ public final class SectionPropertiesSerializer {
                   .attribute("w:w", String.valueOf(pageSize.getWidthTwips()))
                   .attribute("w:h", String.valueOf(pageSize.getHeightTwips()));
         }
-
-        // if (section.hasPageSize()) {
-        //     writer.emptyElement("w:pgSz")
-        //           .attribute("w:w", String.valueOf(section.getPageSize().getWidthTwips()))
-        //           .attribute("w:h", String.valueOf(section.getPageSize().getHeightTwips()));
-        //     if (section.hasOrientation()) {
-        //         writer.attribute("w:orient", section.getOrientation().getXmlValue());
-        //     }
-        // } else {
-        //     if (section.hasOrientation()) {
-        //         writer.emptyElement("w:pgSz")
-        //               .attribute("w:orient", section.getOrientation().getXmlValue());
-        //     }
-
-        // }
         
         if (section.hasBreakType()) {
             writer.emptyElement("w:type")

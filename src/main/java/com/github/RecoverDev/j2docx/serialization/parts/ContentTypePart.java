@@ -55,4 +55,10 @@ public class ContentTypePart implements DocumentPart {
         return "";
     }
 
+
+    @Override
+    public String getPartId() {
+        return "none";
+    }
+
 }

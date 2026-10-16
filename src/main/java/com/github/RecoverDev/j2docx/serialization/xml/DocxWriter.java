@@ -11,6 +11,7 @@ import com.github.RecoverDev.j2docx.serialization.packages.PackageBuilder;
 import com.github.RecoverDev.j2docx.serialization.packages.PackagePack;
 import com.github.RecoverDev.j2docx.serialization.parts.DocumentPart;
 import com.github.RecoverDev.j2docx.serialization.parts.DocumentPartBuilder;
+import com.github.RecoverDev.j2docx.utils.UniqueIntGenerator;
 
 /**
  * Выполняет сериализацию документа J2DOCX в файл формата DOCX.
@@ -42,10 +43,12 @@ public class DocxWriter {
      */    
     public static void write(DocumentX document, String fileName) {
 
+        UniqueIntGenerator generator = new UniqueIntGenerator(1);
 
-        DocumentModel documentModel = DocumentModelFactory.factory(document);
 
-        List<DocumentPart> documentPart = DocumentPartBuilder.Build(documentModel);
+        DocumentModel documentModel = DocumentModelFactory.factory(document, generator);
+
+        List<DocumentPart> documentPart = DocumentPartBuilder.Build(documentModel, generator);
 
         Collection<PackagePack> parts = PackageBuilder.Build(documentPart);
 

@@ -14,6 +14,7 @@ public final class DocumentXSerialiazer {
         writer.startDocument()
             .startElement("w:document")
             .namespace("w", Namespaces.WORD)
+            .namespace("r", Namespaces.RELATIONSHIPS)
             .startElement("w:body");
 
         if (document.getStructureType() == StructureType.SECTIONED) {

@@ -27,6 +27,8 @@ public final class DocumentX implements DocumentElement {
 
     private final Styles styles = new Styles();
 
+    private final Headers headers = new Headers();
+
     private StructureType structureType = StructureType.UNDEFINED;
 
     public StructureType getStructureType() {
@@ -72,7 +74,18 @@ public final class DocumentX implements DocumentElement {
         return this;
     }
 
-
+    /**
+     * Возвращает коллекцию верхних колонтитуллов, добавленных в документ
+     * 
+     * <p>Коллекция все верхние колонтитулы, добавленные во все разделы документа
+     * и используется для оформления верхнего колонтитула каждого раздела. 
+     * Может содержать абзацы, списки, таблицы и другие элементы.</p>
+     * 
+     * @return коллекция верхних колонитулов
+     */
+    public Headers headers() {
+        return this.headers;
+    }
 
     /**
      * Добавляет блочный элемент в документ.

@@ -13,7 +13,7 @@ public class RelsFileModel {
         return Collections.unmodifiableList(this.nodes);
     }
 
-    public int addNodes(String relationship, String path) {
+    public int addNodes(String id, String relationship, String path) {
         int current = this.nodes.size() + 1;
         this.nodes.add(new RelationshipNode(
                                 String.valueOf(current), 

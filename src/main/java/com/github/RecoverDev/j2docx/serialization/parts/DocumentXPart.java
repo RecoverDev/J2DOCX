@@ -60,4 +60,9 @@ public class DocumentXPart implements DocumentPart {
         return this.path;
     }
 
+    @Override
+    public String getPartId() {
+        return "none";
+    }
+
 }

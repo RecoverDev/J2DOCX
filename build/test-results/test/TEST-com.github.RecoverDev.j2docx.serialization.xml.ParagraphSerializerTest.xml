@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.github.RecoverDev.j2docx.serialization.xml.ParagraphSerializerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-07T14:23:24.735Z" hostname="WS-MSK-ANALIT69" time="0.003">
+<testsuite name="com.github.RecoverDev.j2docx.serialization.xml.ParagraphSerializerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-16T15:16:35.367Z" hostname="WS-MSK-ANALIT69" time="0.002">
   <properties/>
   <testcase name="Сериализация параграфа без дополнительных свойств" classname="com.github.RecoverDev.j2docx.serialization.xml.ParagraphSerializerTest" time="0.001"/>
   <testcase name="Сериализация параграфа со свойствами" classname="com.github.RecoverDev.j2docx.serialization.xml.ParagraphSerializerTest" time="0.001"/>

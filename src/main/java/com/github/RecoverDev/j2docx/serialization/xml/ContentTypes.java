@@ -11,4 +11,7 @@ public final class ContentTypes {
     public static final String STYLES = 
         "application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml";
 
+    public static final String HEADER = 
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.header+xml";
+
 }

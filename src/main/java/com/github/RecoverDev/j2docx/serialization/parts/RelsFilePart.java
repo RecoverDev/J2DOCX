@@ -68,4 +68,9 @@ public class RelsFilePart implements DocumentPart {
         this.namePart = namePart + ".rels";
     }
 
+    @Override
+    public String getPartId() {
+        return "none";
+    }
+
 }
