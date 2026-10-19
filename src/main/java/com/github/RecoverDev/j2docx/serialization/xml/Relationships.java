@@ -14,4 +14,7 @@ public final class Relationships {
     public static final String HEADER = 
         "http://schemas.openxmlformats.org/officeDocument/2006/relationships/header";
 
+    public static final String FOOTER = 
+        "http://schemas.openxmlformats.org/officeDocument/2006/relationships/footer";
+
 }

@@ -10,6 +10,20 @@ import com.github.RecoverDev.j2docx.block.Block;
 public class Footer implements DocumentElement, Block {
 
     private final List<Block> blocks = new ArrayList<>();
+    private String FooterId;
+
+    public String getFooterId() {
+        return FooterId;
+    }
+
+    public void setFooterId(String footerId) {
+        FooterId = footerId;
+    }
+
+    public Footer add(Block block) {
+        this.blocks.add(block);
+        return this;
+    }
 
     @Override
     public Collection<DocumentElement> getElements() {

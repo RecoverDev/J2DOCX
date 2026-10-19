@@ -116,11 +116,11 @@ graph TD
 
 - [x] Lists
 
-- [ ] Headers
+- [x] Headers
 
-- [ ] Footers
+- [x] Footers
 
-- [ ] Sections
+- [x] Sections
 
 ## Как собрать проект
 

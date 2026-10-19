@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.github.RecoverDev.j2docx.serialization.xml.ParagraphSerializerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-16T15:16:35.367Z" hostname="WS-MSK-ANALIT69" time="0.002">
+<testsuite name="com.github.RecoverDev.j2docx.serialization.xml.ParagraphSerializerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-10-19T13:24:10.111Z" hostname="WS-MSK-ANALIT69" time="0.003">
   <properties/>
-  <testcase name="Сериализация параграфа без дополнительных свойств" classname="com.github.RecoverDev.j2docx.serialization.xml.ParagraphSerializerTest" time="0.001"/>
+  <testcase name="Сериализация параграфа без дополнительных свойств" classname="com.github.RecoverDev.j2docx.serialization.xml.ParagraphSerializerTest" time="0.0"/>
   <testcase name="Сериализация параграфа со свойствами" classname="com.github.RecoverDev.j2docx.serialization.xml.ParagraphSerializerTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

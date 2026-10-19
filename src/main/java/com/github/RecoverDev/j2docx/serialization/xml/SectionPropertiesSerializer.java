@@ -44,6 +44,24 @@ public final class SectionPropertiesSerializer {
                   .attribute("r:id", "rId" + section.getEvenHeader().getHeaderId());
         }
 
+        if (section.hasDefaultFooter()) {
+            writer.emptyElement("w:footerReference")
+                  .attribute("w:type", "default")
+                  .attribute("r:id", "rId" + section.getDefaultFooter().getFooterId());
+        }
+
+        if (section.hasFirstFooter()) {
+            writer.emptyElement("w:footerReference")
+                  .attribute("w:type", "first")
+                  .attribute("r:id", "rId" + section.getFirstFooter().getFooterId());
+        }
+
+        if (section.hasEvenFooter()) {
+            writer.emptyElement("w:footerReference")
+                  .attribute("w:type", "even")
+                  .attribute("r:id", "rId" + section.getEvenFooter().getFooterId());
+        }
+
         if (orientation == PageOrientation.LANDSCAPE) {
             writer.emptyElement("w:pgSz")
                   .attribute("w:w", String.valueOf(pageSize.getHeightTwips()))

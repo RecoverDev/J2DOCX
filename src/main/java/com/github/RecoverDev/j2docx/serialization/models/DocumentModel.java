@@ -11,6 +11,7 @@ import com.github.RecoverDev.j2docx.DocumentElement;
 import com.github.RecoverDev.j2docx.DocumentX;
 import com.github.RecoverDev.j2docx.block.Listing;
 import com.github.RecoverDev.j2docx.styles.Style;
+import com.github.RecoverDev.j2docx.headerfooter.Footer;
 import com.github.RecoverDev.j2docx.headerfooter.Header;
 import com.github.RecoverDev.j2docx.section.Section;
 
@@ -30,6 +31,7 @@ public class DocumentModel implements Model {
      * Переложим контроль уникальности объектов на стандартную бибилиотеку Java
      */
     private final Set<Header> headers = Collections.newSetFromMap(new IdentityHashMap<>());
+    private final Set<Footer> footers = Collections.newSetFromMap(new IdentityHashMap<>());
 
     public DocumentModel(DocumentX document) {
         this.document = document;
@@ -50,7 +52,11 @@ public class DocumentModel implements Model {
     }
 
     public Set<Header> getHeaders() {
-        return headers;
+        return this.headers;
+    }
+
+    public Set<Footer> getFooters() {
+        return this.footers;
     }
 
     @Override
@@ -83,38 +89,32 @@ public class DocumentModel implements Model {
             if (element instanceof Section section) {
                 if (section.hasDefaultHeader()) {
                     this.headers.add(section.getDefaultHeader());
-                    //addHeader(section.getDefaultHeader());
+                    traversal(section.getDefaultHeader().getElements());
                 }
                 if (section.hasEvenHeader()) {
                     this.headers.add(section.getEvenHeader());
-                    //addHeader(section.getEvenHeader());
+                    traversal(section.getEvenHeader().getElements());
                 }
                 if (section.hasFirstHeader()) {
                     this.headers.add(section.getFirstHeader());
-                    //addHeader(section.getFirstHeader());
+                    traversal(section.getFirstHeader().getElements());
+                }
+                if (section.hasDefaultFooter()) {
+                    this.footers.add(section.getDefaultFooter());
+                    traversal(section.getDefaultFooter().getElements());
+                }
+                if (section.hasFirstFooter()) {
+                    this.footers.add(section.getFirstFooter());
+                    traversal(section.getFirstFooter().getElements());
+                }
+                if (section.hasEvenFooter()) {
+                    this.footers.add(section.getEvenFooter());
+                    traversal(section.getEvenFooter().getElements());
                 }
             }
 
             traversal(element.getElements());
         }
     }
-
-    // private void addHeader(Header header) {
-
-    //     String headerId = generateHeaderId(header);
-    //     if (headerId.length() > 0) {
-    //         header.setHeaderId(headerId);
-    //         this.headers.add(header);
-    //     }
-    // }
-
-    // private String generateHeaderId(Header header) {
-    //     String result = "";
-    //     if (!this.headers.contains(header)) {
-    //         result = String.valueOf(this.headers.size() + 1);
-    //     }
-    //     return result;
-    // }
-
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.github.RecoverDev.j2docx.DocumentX;
 import com.github.RecoverDev.j2docx.Styles;
+import com.github.RecoverDev.j2docx.headerfooter.Footer;
 import com.github.RecoverDev.j2docx.headerfooter.Header;
 
 public interface Model {
@@ -23,6 +24,10 @@ public interface Model {
 
     static HeadersModel of(Header header) {
         return new HeadersModel(header);
+    }
+
+    static FooterModel of(Footer footer) {
+        return new FooterModel(footer);
     }
 
 }

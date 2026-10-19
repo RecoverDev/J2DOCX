@@ -3,6 +3,7 @@ package com.github.RecoverDev.j2docx.serialization.parts;
 import java.util.List;
 
 import com.github.RecoverDev.j2docx.serialization.models.DocumentModel;
+import com.github.RecoverDev.j2docx.serialization.models.FooterModel;
 import com.github.RecoverDev.j2docx.serialization.models.Model;
 import com.github.RecoverDev.j2docx.serialization.models.StylesModel;
 import com.github.RecoverDev.j2docx.serialization.xml.XmlStreamWriter;
@@ -35,6 +36,7 @@ public interface DocumentPart {
             case NumberingModel _ -> new NumberingPart();
             case StylesModel styleModel -> new StylesPart(styleModel);
             case HeadersModel headerModel -> new HeaderPart(headerModel);
+            case FooterModel footerModel -> new FooterPart(footerModel);
             default -> throw new IllegalArgumentException("Неизвестный тип модели: " + model.getClass().getName());
         };
     }
@@ -53,6 +55,10 @@ public interface DocumentPart {
 
     static HeaderPart of(HeadersModel model) {
         return new HeaderPart(model);
+    }
+
+    static FooterPart of(FooterModel model) {
+        return new FooterPart(model);
     }
 
 }
